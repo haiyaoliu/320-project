@@ -1,10 +1,22 @@
 version: '3'
 services:
-    web:
+    server:
+        build: server/
+        command: yarn start
+        volumes: 
+            - ./server:/usr/app
+            - /usr/app/node_modules
+        ports:
+            - "5000:5000"
+    client:
         build: .
         command: yarn start-client
         volumes:
             - .:/usr/app/
             - /usr/app/node_modules
-        ports:
-            - "3000:3000"
+        network_mode: host
+        depends_on: 
+            - server
+        # ports:
+        #     - "3000:3000"
+            # - "5000:5000"
