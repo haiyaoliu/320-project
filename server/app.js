@@ -1,14 +1,15 @@
 const path = require("path");
 const express = require("express");
 const app = express(); // create express app
+const passport = require("passport");
+const bodyParser = require("body-parser");
+require("./passport");
 
-// add middlewares
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "..", "build")));
-app.use(express.static("public"));
+app.use("/", require("./routes"));
 
-app.use((req, res, next) => {
-  res.sendFile(path.join(__dirname, "..", "build", "index.html"));
-});
+app.use("/testing_only", passport.authenticate("jwt", { session: false }));
 
 // start express server on port 5000
 app.listen(5000, () => {
