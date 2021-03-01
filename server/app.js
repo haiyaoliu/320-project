@@ -5,10 +5,14 @@ const passport = require("passport");
 const bodyParser = require("body-parser");
 require("./passport");
 
+//middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "..", "build")));
-app.use("/", require("./routes"));
 
+//React routes
+app.use(express.static(path.join(__dirname, "..", "build")));
+
+//APIs
+app.use("/", require("./routes"));
 app.use("/testing_only", passport.authenticate("jwt", { session: false }));
 
 // start express server on port 5000

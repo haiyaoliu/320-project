@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 
+mongoose.connect(
+  "mongodb+srv://thanh:umassamherst@cluster0.6mduh.mongodb.net/cs320?retryWrites=true&w=majority"
+);
+
 const { Schema } = mongoose;
 
 const UsersSchema = new Schema({
