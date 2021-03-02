@@ -4,8 +4,7 @@ services:
         build: server/
         command: yarn start
         volumes: 
-            - ./server:/usr/app
-            - /usr/app/node_modules
+            - ./server:/usr/app/server
         ports:
             - "5000:5000"
     client:
@@ -13,7 +12,6 @@ services:
         command: yarn start-client
         volumes:
             - .:/usr/app/
-            - /usr/app/node_modules
         network_mode: host
         depends_on: 
             - server
