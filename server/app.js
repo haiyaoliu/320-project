@@ -2,40 +2,15 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require('body-parser');
 const app = express(); // create express app
+const passport = require("passport");
+const bodyParser = require("body-parser");
+require("./passport");
 
-// MongoDB
-const { MongoClient } = require('mongodb');
-const uri = "mongodb+srv://longnguyen:CS320Project@cs320db.aiuni.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const client = new MongoClient(uri);
-
-async function run() {
-  try {
-    await client.connect({useUnifiedTopology: true});
-    const database = client.db('Starship_Employee');
-    const collection = database.collection('employee');
-    // Query for a movie that has the title 'Back to the Future'
-    const query = { isManager: true};
-    const employee = await collection.findOne(query);
-    console.log(employee);
-    
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-}
-run().catch(console.dir);
-
-
-// add middlewares
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "..", "build")));
-app.use(express.static("public"));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use("/", require("./routes"));
 
-// Handle API Request
-app.get("/", (req, res) => {
-  res.send(path.join(__dirname, "..", "build", "index.html"));
-});
+app.use("/testing_only", passport.authenticate("jwt", { session: false }));
 
 app.get("/authentication", (req, res) => {
   console.log(req.body);
