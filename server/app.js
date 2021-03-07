@@ -1,12 +1,20 @@
 const path = require("path");
 const express = require("express");
 const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
 const app = express(); // create express app
 const passport = require("passport");
-const bodyParser = require("body-parser");
-require("./passport");
 
-app.use(bodyParser.urlencoded({ extended: false }));
+require("./passport");
+mongoose.connect(
+  "mongodb+srv://longnguyen:CS320Project@cs320db.aiuni.mongodb.net/cs320?retryWrites=true&w=majority",
+  {useNewUrlParser: true}
+).catch(error => console.error(error));
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use("/", require("./routes"));
 
