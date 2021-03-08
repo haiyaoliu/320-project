@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
-    "mongoose": "^5.11.18",
+    "mongoose": "^5.11.15",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.2",
