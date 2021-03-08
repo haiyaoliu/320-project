@@ -8,7 +8,7 @@ const passport = require("passport");
 require("./passport");
 mongoose.connect(
   "mongodb+srv://longnguyen:CS320Project@cs320db.aiuni.mongodb.net/cs320?retryWrites=true&w=majority",
-  {useNewUrlParser: true}
+  { useNewUrlParser: true, useUnifiedTopology: true }
 ).catch(error => console.error(error));
 
 

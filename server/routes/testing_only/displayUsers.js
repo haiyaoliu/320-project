@@ -2,14 +2,15 @@ const mongoose = require("mongoose");
 const router = require("express").Router();
 
 mongoose.connect(
-  "mongodb+srv://thanh:umassamherst@cluster0.6mduh.mongodb.net/cs320?retryWrites=true&w=majority"
+  "mongodb+srv://thanh:umassamherst@cluster0.6mduh.mongodb.net/cs320?retryWrites=true&w=majority",
+  { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
 require("../../models/Users");
 const User = mongoose.model("Users");
 
 router.get("/", (req, res, done) => {
-  User.find(function (err, users) {
+  User.find({}, function (err, users) {
     if (err) return console.error(err);
     res.send(users);
   });
