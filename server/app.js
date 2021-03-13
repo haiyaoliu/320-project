@@ -1,9 +1,23 @@
+require("dotenv").config();
 const path = require("path");
 const express = require("express");
-const app = express(); // create express app
 const passport = require("passport");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const formidable = require("express-formidable");
 require("./passport");
+
+const app = express(); // create express app
+
+//packages
+app.use(formidable());
+
+//database
+mongoose.connect(process.env.dblink, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+mongoose.set("useCreateIndex", true);
 
 //middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -12,10 +26,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "..", "build")));
 
 //APIs
-app.use("/", require("./routes"));
 app.use("/testing_only", passport.authenticate("jwt", { session: false }));
+app.use("/", require("./routes"));
 
 // start express server on port 5000
-app.listen(5000, () => {
-  console.log("server started on localhost:5000");
+app.listen(process.env.PORT, () => {
+  console.log(`server started on localhost:${process.env.PORT}`);
 });
