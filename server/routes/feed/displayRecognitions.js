@@ -5,10 +5,12 @@ require("../../models/Write");
 const Recognition = mongoose.model("Write");
 
 router.get("/", async (req, res, done) => {
-  await Recognition.find({}, function(err, recognitions) {
-    if (err) return console.error(err);
+  try {
+    const recognitions = await Recognition.find();
     res.send(recognitions);
-  });
+  } catch (err) {
+    return console.error(err);
+  }
 });
 
 module.exports = router;
