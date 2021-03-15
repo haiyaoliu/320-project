@@ -4,10 +4,6 @@ const LocalStrategy = require("passport-local").Strategy;
 const JWTstrategy = require("passport-jwt").Strategy;
 const ExtractJWT = require("passport-jwt").ExtractJwt;
 
-mongoose.connect(
-  "mongodb+srv://thanh:umassamherst@cluster0.6mduh.mongodb.net/cs320?retryWrites=true&w=majority"
-);
-
 require("../models/Users");
 const User = mongoose.model("Users");
 
@@ -44,7 +40,7 @@ passport.use(
   new JWTstrategy(
     {
       secretOrKey: "TOP_SECRET",
-      jwtFromRequest: ExtractJWT.fromUrlQueryParameter("secret_token"),
+      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
     },
     async (token, done) => {
       try {
