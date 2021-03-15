@@ -1,0 +1,58 @@
+.bodySmall {
+  font-size: 1.25rem;
+}
+
+.bodyTiny {
+  font-size: 1rem;
+}
+
+.chooseEmployeePadding {
+  margin-left: .7rem;
+}
+
+.curveSearch {
+  border: 2px solid #919191;
+  border-radius: 20px;
+}
+
+.center {
+  text-align: center;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.fullHeight {
+  height: 100%;
+}
+
+.shifted {
+  margin-top: .5rem;
+}
+
+.employeeDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.postBoxAlignment {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.flexGrow {
+  flex-grow: 1;
+}
+
+.postTextArea {
+  resize: none;
+  height: 100% !important;
+}
+
+.postCompanyLogo {
+  height: 35px;
+}
+
