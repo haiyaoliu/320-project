@@ -1,7 +1,6 @@
 import * as React from 'react';
 //import { readSync, realpathSync } from 'fs';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "../styles.css";
 import "./PostModal.css";
 import Modal from 'react-bootstrap/Modal'
 import ModalDialog from 'react-bootstrap/ModalDialog'
@@ -20,18 +19,6 @@ import Image from 'react-bootstrap/Image'
 import Figure from 'react-bootstrap/Figure'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import { useState } from 'react';
-
-const PostModal = (props) => (
-    <div>
-        Test Names:
-        {props.people.map(person => (
-            <div>
-                {person.firstName}
-            </div>
-        ))}
-    <Example />
-   </div>
-);
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
@@ -80,7 +67,7 @@ const CustomMenu = React.forwardRef(
     },
 );
 
-function Example() {
+const PostModal = (props) => {
     const [show, setShow] = useState(false);
   
     const handleClose = () => setShow(false);
@@ -89,7 +76,7 @@ function Example() {
     return (
       <>
         <Button variant="primary" onClick={handleShow}>
-          Launch demo modal
+          Write a Post
         </Button>
   
         <Modal 

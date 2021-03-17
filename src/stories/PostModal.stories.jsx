@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import "../styles.css";
 import PostModal from '../post-modal/PostModal';
 
 export default {
