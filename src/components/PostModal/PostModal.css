@@ -7,7 +7,7 @@
 }
 
 .chooseEmployeePadding {
-  margin-left: .7rem;
+  margin-left: 0.7rem;
 }
 
 .curveSearch {
@@ -28,7 +28,7 @@
 }
 
 .shifted {
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
 .employeeDetailsContainer {
@@ -56,3 +56,7 @@
   height: 35px;
 }
 
+.dropdown-menu {
+  max-height: 250px;
+  overflow-y: auto;
+}

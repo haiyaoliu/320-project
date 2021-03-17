@@ -6,6 +6,7 @@ import Modal from 'react-bootstrap/Modal'
 import ModalDialog from 'react-bootstrap/ModalDialog'
 import ModalHeader from 'react-bootstrap/ModalHeader'
 import Button from 'react-bootstrap/Button'
+import axios from "axios";
 import ModalTitle from 'react-bootstrap/ModalTitle'
 import ModalBody from 'react-bootstrap/ModalBody'
 import ModalFooter from 'react-bootstrap/ModalFooter'
@@ -72,6 +73,24 @@ const PostModal = (props) => {
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const [content, setContent] = useState("")
+    function handleSubmit(event) {
+      console.log(content);
+      const sendRecognition = { content: content}
+      axios.post('/write/writeRecognition', sendRecognition)
+        .then(response => {
+          console.log("RESPONSE", response);
+          // if (response.status == 200 && response.data.token) {
+          //   console.log("LOGIN SUCCESS")
+          //   props.history.push("/dashboard")
+          // }
+        })
+        .catch(error => {
+          console.error('There was an error!', error);
+        });
+      event.preventDefault();
+    }
   
     return (
       <>
@@ -103,18 +122,9 @@ const PostModal = (props) => {
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu as={CustomMenu}>
-                            <Dropdown.Item eventKey="1" active>
-                                John Smith
-                            </Dropdown.Item>
-                            <Dropdown.Item eventKey="2">
-                                Name 2
-                            </Dropdown.Item>
-                            <Dropdown.Item eventKey="3" /*active*/>
-                                Name 3
-                            </Dropdown.Item>
-                            <Dropdown.Item eventKey="1">
-                                Name 4
-                            </Dropdown.Item>
+                                {props.peers.map(peer => (
+                                  <Dropdown.Item>{peer}</Dropdown.Item>
+                                ))}
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
@@ -139,24 +149,29 @@ const PostModal = (props) => {
                 </Col>
 
                 <Col>
-                    <Form className="fullHeight">
-                        <Form.Group controlId="exampleForm.ControlTextarea1" className="postBoxAlignment">
+                    <Form className="fullHeight" onSubmit={handleSubmit}>
+                        <Form.Group controlId="content" className="postBoxAlignment">
                                 <Row>
                                     <Col>
                                         <h5>Make Your Post</h5>
                                     </Col>
                                     <Col className="text-right">
-                                        <Button size="sm">
+                                        <Button size="sm" type="submit">
                                             Recognize!&nbsp;
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                                        </Button>{' '}
+                                        </Button>
                                     </Col>
                                 </Row>
-                            <div className="mt-2 flexGrow">
-                                <div className="fullHeight">
-                                    <Form.Control as="textarea" rows={6} className="postTextArea"/>
+                                <div className="mt-2 flexGrow">
+                                    <div className="fullHeight">
+                                        <Form.Control
+                                          as="textarea" rows={6} className="postTextArea"
+                                          type="content"
+                                          value={content}
+                                          onChange ={(e) => setContent(e.target.value)}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
                         </Form.Group>
                     </Form>
                 </Col>
