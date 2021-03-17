@@ -1,20 +1,42 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Layout from "../../Layout";
 import "./Login.css";
 
-function Login() {
+function Login(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
     function validateForm() {
         return email.length > 0 && password.length > 0;
     }
-
     function handleSubmit(event) {
+        console.log("username:", email)
+        console.log("password", password);
+        const sendLogin = {
+            email: email,
+            password: password
+        }
+        axios.post('/login', sendLogin)
+            .then(response => {
+                console.log("RESPONSE", response);
+                //check if valid response
+                //if yes:
+                if(response.status == 200 && response.data.token){
+                    console.log("LOGIN SUCCESS")
+                    props.history.push("/dashboard")
+                }
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+        /*if(email==='admin@admin' && password==='password'){
+           console.log("Admin access: logging in");
+           props.history.push("/dashboard")
+        }*/
         event.preventDefault();
     }
-
     return (
         <Layout>
             <br />
@@ -50,5 +72,4 @@ function Login() {
         </Layout>
     )
 }
-
 export default Login;
