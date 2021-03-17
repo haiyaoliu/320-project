@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Alert } from "bootstrap";
 import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -31,10 +32,6 @@ function Login(props) {
             .catch(error => {
                 console.error('There was an error!', error);
             });
-        /*if(email==='admin@admin' && password==='password'){
-           console.log("Admin access: logging in");
-           props.history.push("/dashboard")
-        }*/
         event.preventDefault();
     }
     return (
@@ -43,6 +40,10 @@ function Login(props) {
             <section className="text-center">
                 <div className="container">
                     <img src="logo-recognition.svg" />
+                </div>
+                <span className="block-example border border-dark">
+                <div>
+                    <img src="profile.jpg" />
                 </div>
                 <div className="text-left Login">
                     <Form onSubmit={handleSubmit}>
@@ -68,8 +69,12 @@ function Login(props) {
                         </Button>
                     </Form>
                 </div>
+                </span>
+                <div className="container">
+                    <img src="ukg1.jpg" />
+                </div>
             </section>
         </Layout>
-    )
+    );
 }
 export default Login;
