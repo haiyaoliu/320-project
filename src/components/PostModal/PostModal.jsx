@@ -70,26 +70,41 @@ const CustomMenu = React.forwardRef(
 
 const PostModal = (props) => {
     const [show, setShow] = useState(false);
-  
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
     const [content, setContent] = useState("")
+    const [recognizee, setRecognizee] = useState("")
+  
+    const handleClose = () => { setShow(false); }
+    const handleShow = () => {
+      setRecognizee(String(props.peers[1])); setShow(true);
+    }
     function handleSubmit(event) {
       console.log(content);
-      const sendRecognition = { content: content}
+      const sendRecognition = {
+        
+        content: content,
+        coreValue: [],
+        createdAt: new Date()
+      }
       axios.post('/write/writeRecognition', sendRecognition)
         .then(response => {
           console.log("RESPONSE", response);
-          // if (response.status == 200 && response.data.token) {
-          //   console.log("LOGIN SUCCESS")
-          //   props.history.push("/dashboard")
-          // }
         })
         .catch(error => {
           console.error('There was an error!', error);
         });
       event.preventDefault();
+    }
+    
+    function peerChange(name) {
+      let listPeer = props.peers;
+      let i = 0;
+      for (i = 0; i < listPeer.length; i++) {
+        if (listPeer[i] === name)
+          break;
+      }
+      document.getElementById("peerPosition").innerHTML = props.positions[i];
+      document.getElementById("peerCompany").innerHTML = props.companies[i];
+      document.getElementById("peerAvatar").src = "https://randomuser.me/api/portraits/men/" + String(i) +".jpg";
     }
   
     return (
@@ -123,7 +138,12 @@ const PostModal = (props) => {
 
                             <Dropdown.Menu as={CustomMenu}>
                                 {props.peers.map(peer => (
-                                  <Dropdown.Item>{peer}</Dropdown.Item>
+                                  <Dropdown.Item  onClick={(e) => {
+                                    setRecognizee(String(e.target.innerHTML))
+                                    peerChange(e.target.innerHTML)
+                                  }}>
+                                     {peer}
+                                  </Dropdown.Item>
                                 ))}
                             </Dropdown.Menu>
                         </Dropdown>
@@ -131,18 +151,18 @@ const PostModal = (props) => {
                     <Row>
                         <Col className="bodySmall center">
                             <div className='mt-2'>
-                                <Image src="https://randomuser.me/api/portraits/men/79.jpg" rounded />
+                                <Image src="https://randomuser.me/api/portraits/men/1.jpg" id="peerAvatar" rounded />
                             </div>
                         </Col>
                         <Col className="bodyTiny center shifted employeeDetailsContainer">
                                     <div className="fullWidth center">
-                                        John Smith
+                                       {recognizee}
                                     </div>
-                                    <div className="fullWidth center">
-                                        CEO
+                                    <div className="fullWidth center" id="peerPosition">
+                                        {props.positions[1]}
                                     </div>
-                                    <div className="fullWidth center">
-                                        Big Tech
+                                    <div className="fullWidth center" id="peerCompany">
+                                        {props.companies[1]}
                                     </div>
                         </Col>
                     </Row>
@@ -156,7 +176,7 @@ const PostModal = (props) => {
                                         <h5>Make Your Post</h5>
                                     </Col>
                                     <Col className="text-right">
-                                        <Button size="sm" type="submit">
+                                        <Button size="sm" type="submit" onClick={handleClose}>
                                             Recognize!&nbsp;
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                                         </Button>
