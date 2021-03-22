@@ -38,7 +38,7 @@ function Login(props) {
         event.preventDefault();
     }
     return (
-        <Layout>
+        <div>
             <br />
             <section className="text-center">
                 <div className="container">
@@ -69,7 +69,7 @@ function Login(props) {
                     </Form>
                 </div>
             </section>
-        </Layout>
+        </div>
     )
 }
 export default Login;

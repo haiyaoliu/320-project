@@ -17,6 +17,9 @@ function Layout(props) {
                     <Nav.Link href="#features">Features</Nav.Link>
                     <Nav.Link href="#pricing">Pricing</Nav.Link>
                 </Nav>
+                <Nav>
+                    <Nav.Link href="/">Log Out</Nav.Link>
+                </Nav>
             </Navbar>
             {children}
         </div>

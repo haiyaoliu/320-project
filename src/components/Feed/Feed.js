@@ -5,18 +5,18 @@ import parser from "body-parser";
 import { postData } from "./Post/test_posts";
 import { Posts } from "./Post/Post";
 import "./Feed.css";
+import { Container } from "react-bootstrap";
 
 
 function Feed(props) {
 
-
-
     return (
-        <Layout>
-            <div className="feed">
+        <div >
+            <Container fluid style={{width:'60%'}}>
                 <Posts />
-            </div>
-        </Layout>
+            </Container>
+            
+        </div>
     );
 }
 

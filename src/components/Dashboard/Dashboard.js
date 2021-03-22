@@ -2,17 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Layout from "../../Layout";
 import { Button } from "bootstrap";
+import Feed from "../Feed/Feed"
 
 function Dashboard(props) {
-
-    function pageSwap() {
-      axios.get('/feed');
-    }
+    // Add other components to this if we want them to display on the same page
     return (
-      <Layout>
-        <p>dashboard</p>
-        <a href="/">logout</a>
-      </Layout>
+        <Layout>
+            <Feed />
+        </Layout>
     );
 }
 
