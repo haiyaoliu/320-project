@@ -8,36 +8,19 @@ import Login from "./components/Login/Login"
 export default function App(props) {
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    axios.get("/users.json").then((response) => {
-      setUsers(response.data);
-    });
-  })
-
   return (
     <div>
       <Router>
-            <Switch>
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/dashboard" component={Dashboard} />
-            </Switch>
-            <Redirect from="/" to="login" />
+        <Switch>
+          <Route exact path="/login" render={(props) => (
+            <Login {...props} setUser={setUsers} isAuthed={true} />
+          )} />
+          <Route exact path="/dashboard" render={(props) => (
+            <Dashboard {...props} user={users} isAuthed={true} />
+          )} />
+        </Switch>
+        <Redirect from="/" to="login" />
       </Router>
-      <ul className="users">
-        {users.map((user) => (
-          <li className="user">
-            <p>
-              <strong>Name:</strong> {user.name}
-            </p>
-            <p>
-              <strong>Email:</strong> {user.email}
-            </p>
-            <p>
-              <strong>City:</strong> {user.address.city}
-            </p>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

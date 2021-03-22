@@ -72,15 +72,18 @@ const PostModal = (props) => {
     const [show, setShow] = useState(false);
     const [content, setContent] = useState("")
     const [recognizee, setRecognizee] = useState("")
+    const [employeeID, setEmployeeID] = useState("")
   
     const handleClose = () => { setShow(false); }
     const handleShow = () => {
       setRecognizee(String(props.peers[1])); setShow(true);
+      setEmployeeID(props.userID[1])
     }
     function handleSubmit(event) {
       console.log(content);
       const sendRecognition = {
-        
+        writerID: props.writerID,
+        recognizeeID: employeeID,
         content: content,
         coreValue: [],
         createdAt: new Date()
@@ -102,6 +105,7 @@ const PostModal = (props) => {
         if (listPeer[i] === name)
           break;
       }
+      setEmployeeID(props.userID[i])
       document.getElementById("peerPosition").innerHTML = props.positions[i];
       document.getElementById("peerCompany").innerHTML = props.companies[i];
       document.getElementById("peerAvatar").src = "https://randomuser.me/api/portraits/men/" + String(i) +".jpg";

@@ -5,8 +5,8 @@ require("../../models/Write");
 const Write = mongoose.model("Write");
 
 router.post("/", (req, res, done) => {
-  // req.body.writerID = req.fields.writerID
-  // req.body.recognizeeID = req.fields.recognizeeID
+  req.body.writerID = req.fields.writerID
+  req.body.recognizeeID = req.fields.recognizeeID
   req.body.content = req.fields.content
   req.body.coreValue = req.fields.coreValue
   req.body.createdAt = req.fields.createdAt
