@@ -4,6 +4,7 @@ import "./styles.css";
 import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard"
 import Login from "./components/Login/Login"
+import Feed from "./components/Feed/Feed";
 
 export default function App(props) {
   const [users, setUsers] = useState([]);
@@ -20,6 +21,7 @@ export default function App(props) {
             <Switch>
               <Route exact path="/login" component={Login} />
               <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/feed" component={Feed} />
             </Switch>
             <Redirect from="/" to="login" />
       </Router>
