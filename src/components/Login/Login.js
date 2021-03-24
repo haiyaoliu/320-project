@@ -9,6 +9,7 @@ import "./Login.css";
 function Login(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState(false);
     function validateForm() {
         return email.length > 0 && password.length > 0;
     }
@@ -28,11 +29,27 @@ function Login(props) {
                     console.log("LOGIN SUCCESS")
                     props.history.push("/dashboard")
                 }
+                else{
+                    setError(true);
+                }
             })
             .catch(error => {
                 console.error('There was an error!', error);
             });
         event.preventDefault();
+    }
+    let isError = error;
+    function handleError(isError) {
+        if(isError){
+            return <div className="text-center">
+                        <p className="displayError">
+                            Invalid Username or Password
+                        </p>
+                    </div>;
+        }
+        else{
+            return
+        }
     }
     return (
         <Layout>
@@ -68,6 +85,7 @@ function Login(props) {
                             Login
                         </Button>
                     </Form>
+                    {handleError(isError)}
                 </div>
                 </span>
                 <div className="container">

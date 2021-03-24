@@ -17,4 +17,7 @@
         box-shadow: 5px 5px 5px grey;
         display: inline-block;
     }
+    .displayError {
+        color: red
+    }
 }
