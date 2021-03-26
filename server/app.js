@@ -29,6 +29,13 @@ app.use(express.static(path.join(__dirname, "..", "build")));
 app.use("/testing_only", passport.authenticate("jwt", { session: false }));
 app.use("/", require("./routes"));
 
+app.get("/authentication", (req, res) => {
+  console.log(req.body);
+  res.send("API Gateway for Authentication")
+})
+
+
+
 // start express server on port 5000
 app.listen(process.env.PORT, () => {
   console.log(`server started on localhost:${process.env.PORT}`);
