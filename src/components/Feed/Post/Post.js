@@ -1,5 +1,6 @@
-import React from "react";
-import { postData } from "./test_posts" // CHANGE THIS
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+// import { postData } from "./test_posts" // CHANGE THIS
 import { ListGroup, Card, Container, Col, Row } from "react-bootstrap";
 
 // HEADER
@@ -42,6 +43,21 @@ const Post = ({ writerID, recognizeeID, content, coreValue, createdAt }) => {
 }
 
 export const Posts = () => {
+    const [postData, setPostData] = useState([]);
+    
+    const getPostData = () => {
+        axios.get('/feed/displayRecognitions')
+            .then(response => {
+                const allPosts = response.data;
+                setPostData(allPosts);
+            })
+            .catch(error => console.log("Error: ", error));
+    }
+    
+    useEffect(() => {
+        getPostData()
+    }, []);
+
     return (
         <div>
             <FeedHeader />
