@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Alert } from "bootstrap";
 import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -8,6 +9,7 @@ import "./Login.css";
 function Login(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState(false);
     function validateForm() {
         return email.length > 0 && password.length > 0;
     }
@@ -27,15 +29,27 @@ function Login(props) {
                     console.log("LOGIN SUCCESS")
                     props.history.push("/dashboard")
                 }
+                else{
+                    setError(true);
+                }
             })
             .catch(error => {
                 console.error('There was an error!', error);
             });
-        /*if(email==='admin@admin' && password==='password'){
-           console.log("Admin access: logging in");
-           props.history.push("/dashboard")
-        }*/
         event.preventDefault();
+    }
+    let isError = error;
+    function handleError(isError) {
+        if(isError){
+            return <div className="text-center">
+                        <p className="displayError">
+                            Invalid Username or Password
+                        </p>
+                    </div>;
+        }
+        else{
+            return
+        }
     }
     return (
         <Layout>
@@ -43,6 +57,10 @@ function Login(props) {
             <section className="text-center">
                 <div className="container">
                     <img src="logo-recognition.svg" />
+                </div>
+                <span className="block-example border border-dark">
+                <div>
+                    <img src="profile.jpg" />
                 </div>
                 <div className="text-left Login">
                     <Form onSubmit={handleSubmit}>
@@ -67,9 +85,14 @@ function Login(props) {
                             Login
                         </Button>
                     </Form>
+                    {handleError(isError)}
+                </div>
+                </span>
+                <div className="container">
+                    <img src="ukg1.jpg" />
                 </div>
             </section>
         </Layout>
-    )
+    );
 }
 export default Login;

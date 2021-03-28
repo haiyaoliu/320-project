@@ -7,4 +7,17 @@
         margin: 0 auto;
         max-width: 320px;
     }
+    .block-example {
+        border-radius: 25px;
+        border: 5px;
+        padding: 20px;
+        width: 400px;
+        height: 425px;
+        margin: 0.5rem;
+        box-shadow: 5px 5px 5px grey;
+        display: inline-block;
+    }
+    .displayError {
+        color: red
+    }
 }
