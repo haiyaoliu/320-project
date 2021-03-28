@@ -37,6 +37,7 @@ passport.use(
 );
 
 passport.use(
+  "jwt-user",
   new JWTstrategy(
     {
       secretOrKey: "TOP_SECRET",
@@ -45,6 +46,27 @@ passport.use(
     async (token, done) => {
       try {
         return done(null, token.user);
+      } catch (error) {
+        done(error);
+      }
+    }
+  )
+);
+
+passport.use(
+  "jwt-admin",
+  new JWTstrategy(
+    {
+      secretOrKey: "TOP_SECRET",
+      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+    },
+    async (token, done) => {
+      try {
+        if (token.user.isManager === true) {
+          return done(null, token.user);
+        } else {
+          done(null, false);
+        }
       } catch (error) {
         done(error);
       }

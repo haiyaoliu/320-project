@@ -26,8 +26,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "..", "build")));
 
 //APIs
-app.use("/testing_only", passport.authenticate("jwt", { session: false }));
+app.use("/testing_only", passport.authenticate("jwt-user", { session: false }));
+app.use("/admin", passport.authenticate("jwt-admin", { session: false }));
 app.use("/", require("./routes"));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../build", "index.html"));
+});
 
 // start express server on port 5000
 app.listen(process.env.PORT, () => {
