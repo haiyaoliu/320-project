@@ -9,17 +9,20 @@ router.post("/", (req, res, next) => {
   passport.authenticate("login", async (err, user, info) => {
     try {
       if (err || !user) {
-        console.log(user);
-        console.log(err);
         const error = new Error("An error occurred.");
-        
+
         return next(error);
       }
 
       req.login(user, { session: false }, async (error) => {
         if (error) return next(error);
 
-        const body = { _id: user._id, email: user.email };
+        const body = {
+          _id: user._id,
+          email: user.email,
+          isManager: user.isManager,
+        };
+
         const token = jwt.sign({ user: body }, "TOP_SECRET", {
           expiresIn: process.env.expirationTime,
         });
