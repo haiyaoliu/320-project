@@ -19,7 +19,9 @@ import { Dropdown } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'
 import Figure from 'react-bootstrap/Figure'
 import DropdownButton from 'react-bootstrap/DropdownButton'
-import { useState } from 'react';
+import { useState, useRef, Fragment } from 'react';
+import { Typeahead } from 'react-bootstrap-typeahead';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
@@ -70,12 +72,18 @@ const CustomMenu = React.forwardRef(
 
 const PostModal = (props) => {
     const [show, setShow] = useState(false);
-    const [content, setContent] = useState("")
-    const [recognizee, setRecognizee] = useState("")
-    const [employeeID, setEmployeeID] = useState("")
+    const [content, setContent] = useState("");
+    const [recognizee, setRecognizee] = useState("");
+    const [employeeID, setEmployeeID] = useState("");
+    const [coreValue, setCoreValue] = useState([]);
+    const [coreSelections, setCoreSelections] = useState([]);
   
     const handleClose = () => { setShow(false); }
     const handleShow = () => {
+      axios.post("write/getCoreValue", { company: String(props.companies[0]) })
+        .then(response => {
+          setCoreValue(response.data["values"]);
+        })
       setRecognizee(String(props.peers[1])); setShow(true);
       setEmployeeID(props.userID[1])
     }
@@ -85,7 +93,7 @@ const PostModal = (props) => {
         writerID: props.writerID,
         recognizeeID: employeeID,
         content: content,
-        coreValue: [],
+        coreValue: coreSelections,
         createdAt: new Date()
       }
       axios.post('/write/writeRecognition', sendRecognition)
@@ -108,7 +116,12 @@ const PostModal = (props) => {
       setEmployeeID(props.userID[i])
       document.getElementById("peerPosition").innerHTML = props.positions[i];
       document.getElementById("peerCompany").innerHTML = props.companies[i];
-      document.getElementById("peerAvatar").src = "https://randomuser.me/api/portraits/men/" + String(i) +".jpg";
+      document.getElementById("peerAvatar").src = "https://randomuser.me/api/portraits/men/" + String(i) + ".jpg";
+      
+      axios.post("write/getCoreValue", { company: String(props.companies[i]) })
+        .then(response => {
+          setCoreValue(response.data["values"]);
+        })
     }
   
     return (
@@ -177,12 +190,12 @@ const PostModal = (props) => {
                         <Form.Group controlId="content" className="postBoxAlignment">
                                 <Row>
                                     <Col>
-                                        <h5>Make Your Post</h5>
+                                        <h5 style={{ marginTop: '5px' }}>Make Your Post</h5>
                                     </Col>
                                     <Col className="text-right">
                                         <Button size="sm" type="submit" onClick={handleClose}>
-                                            Recognize!&nbsp;
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                            Recognize!&nbsp;&nbsp;
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                                         </Button>
                                     </Col>
                                 </Row>
@@ -194,6 +207,16 @@ const PostModal = (props) => {
                                           value={content}
                                           onChange ={(e) => setContent(e.target.value)}
                                         />
+                                        <Typeahead
+                                          style={{ marginTop: '10px' }}
+                                          id="basic-typeahead-multiple"
+                                          labelKey="name"
+                                          multiple
+                                          onChange={setCoreSelections}
+                                          options={coreValue}
+                                          placeholder="Choose core values"
+                                          selected={coreSelections}
+                                        />
                                     </div>
                                 </div>
                         </Form.Group>
@@ -201,14 +224,6 @@ const PostModal = (props) => {
                 </Col>
               </Row>
           </Modal.Body>
-          {/* <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={handleClose}>
-              Save Changes
-            </Button>
-          </Modal.Footer> */}
         </Modal>
       </>
     );
