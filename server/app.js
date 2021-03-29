@@ -20,7 +20,8 @@ mongoose.connect(process.env.dblink, {
 mongoose.set("useCreateIndex", true);
 
 //middlewares
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //React routes
 app.use(express.static(path.join(__dirname, "..", "build")));
