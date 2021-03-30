@@ -22,6 +22,7 @@ function Login(props) {
         }
         axios.post('/login', sendLogin)
             .then(response => {
+                props.setUser(email)
                 console.log("RESPONSE", response);
                 //check if valid response
                 //if yes:

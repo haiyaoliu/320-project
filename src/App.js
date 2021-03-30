@@ -8,12 +8,6 @@ import Login from "./components/Login/Login"
 export default function App(props) {
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    axios.get("/users.json").then((response) => {
-      setUsers(response.data);
-    });
-  });
-
   return (
     <div>
       <Router>
