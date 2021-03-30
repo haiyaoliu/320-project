@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Layout from "../../Layout";
 import PostModal from "../PostModal/PostModal"
+import { Button } from "bootstrap";
+import Feed from "../Feed/Feed"
 
 
 function Dashboard(props) {
@@ -37,12 +39,9 @@ function Dashboard(props) {
   
     return (
       <Layout>
-          <p>Dashboard</p>
           <PostModal peers={peers} positions={position} 
                      companies={company} userID={employeeID} writerID={writerID}/>
-          <br />
-          <br />
-          <a href="/">Logout</a>  
+          <Feed />
       </Layout>
     );
 }
