@@ -1,9 +1,13 @@
-## To run this project execute following commands in order
-
-```javascript
-cd server
+## To run this project, we start the client and server separately
+### For the client
+```bash
 yarn install
-cd ..
+yarn start-client
+```
+
+### For the server
+```bash
+cd server
 yarn install
 yarn start
 ```
