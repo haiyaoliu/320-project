@@ -1,0 +1,78 @@
+.bodySmall {
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.bodyTiny {
+  font-size: 1rem;
+}
+
+.chooseEmployeePadding {
+  margin-left: 0.7rem;
+}
+
+.curveSearch {
+  border: 1px solid #dee2e6;
+  border-radius: 20px;
+}
+
+.center {
+  text-align: center;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.fullHeight {
+  height: 100%;
+}
+
+.shifted {
+  margin-top: 0.5rem;
+}
+
+.employeeDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.postBoxAlignment {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.flexGrow {
+  flex-grow: 1;
+}
+
+.postTextArea {
+  resize: none;
+  height: 80% !important;
+}
+
+.postCompanyLogo {
+  height: 25px;
+  margin-left: 5.5rem;
+}
+
+.dropdown-menu {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.modal-header {
+  padding: 0.6rem;
+}
+
+.modal-content {
+  border-radius: 1.3rem !important;
+}
+
+@media (min-width: 768px) {
+  .col-md-4 {
+    border-right: 1px solid #dee2e6;
+  }
+}
