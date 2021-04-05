@@ -91,7 +91,9 @@ const PostModal = (props) => {
       console.log(content);
       const sendRecognition = {
         writerID: props.writerID,
+        writerName: props.writerName,
         recognizeeID: employeeID,
+        recognizeeName: recognizee,
         content: content,
         coreValue: coreSelections,
         createdAt: new Date()

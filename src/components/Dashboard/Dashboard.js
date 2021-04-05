@@ -12,6 +12,7 @@ function Dashboard(props) {
   const [company, setCompany] = useState([{}]);
   const [employeeID, setEmployeeID] = useState([{}])
   const [writerID, setWriterID] = useState("")
+  const [writerName, setWriterName] = useState("")
 
   
   useEffect(() => {
@@ -29,8 +30,8 @@ function Dashboard(props) {
     });
     
     axios.post("write/getCurrentUser", { email: String(props.user) }).then((response) => {
-      console.log(response.data)
       setWriterID(response.data["employeeId"]);
+      setWriterName(response.data["firstName"] + ' ' + response.data["lastName"])
     }).catch(error => {
       console.log('There was an error!', error);
     })
@@ -39,7 +40,7 @@ function Dashboard(props) {
   
     return (
       <Layout>
-          <PostModal peers={peers} positions={position} 
+          <PostModal peers={peers} positions={position} writerName = {writerName}
                      companies={company} userID={employeeID} writerID={writerID}/>
           <Feed />
       </Layout>
