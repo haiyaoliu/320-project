@@ -44,7 +44,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 const CustomMenu = React.forwardRef(
     ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
       const [value, setValue] = useState('');
-  
+
       return (
         <div
           ref={ref}
@@ -77,7 +77,7 @@ const PostModal = (props) => {
     const [employeeID, setEmployeeID] = useState("");
     const [coreValue, setCoreValue] = useState([]);
     const [coreSelections, setCoreSelections] = useState([]);
-  
+
     const handleClose = () => { setShow(false); }
     const handleShow = () => {
       axios.post("write/getCoreValue", { company: String(props.companies[0]) })
@@ -101,13 +101,14 @@ const PostModal = (props) => {
       axios.post('/write/writeRecognition', sendRecognition)
         .then(response => {
           console.log("RESPONSE", response);
+          props.forceUpdate();
         })
         .catch(error => {
           console.error('There was an error!', error);
         });
       event.preventDefault();
     }
-    
+
     function peerChange(name) {
       let listPeer = props.peers;
       let i = 0;
@@ -119,21 +120,21 @@ const PostModal = (props) => {
       document.getElementById("peerPosition").innerHTML = props.positions[i];
       document.getElementById("peerCompany").innerHTML = props.companies[i];
       document.getElementById("peerAvatar").src = "https://randomuser.me/api/portraits/men/" + String(i) + ".jpg";
-      
+
       axios.post("write/getCoreValue", { company: String(props.companies[i]) })
         .then(response => {
           setCoreValue(response.data["values"]);
         })
     }
-  
+
     return (
       <>
         <Button variant="primary" onClick={handleShow}>
           Write a Post
         </Button>
-  
-        <Modal 
-            show={show} 
+
+        <Modal
+            show={show}
             onHide={handleClose}
             size="lg"
         >
