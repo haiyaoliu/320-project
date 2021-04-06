@@ -12,10 +12,9 @@ function Feed(props) {
 
     return (
         <div >
-            <Container fluid style={{width:'60%'}}>
+            <Container fluid>
                 <Posts />
             </Container>
-            
         </div>
     );
 }

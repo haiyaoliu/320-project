@@ -53,7 +53,7 @@ function Login(props) {
         }
     }
     return (
-        <Layout>
+        <>
             <br />
             <section className="text-center">
                 <div className="container">
@@ -93,7 +93,7 @@ function Login(props) {
                     <img src="ukg1.jpg" />
                 </div>
             </section>
-        </Layout>
+        </>
     );
 }
 export default Login;

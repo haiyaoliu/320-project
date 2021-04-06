@@ -10,11 +10,11 @@
 }
 
 .post-container {
-    padding: 10px 0;
+    width: 100%;
 }
 
 .one-post {
-    
+    margin: 10px 0;
 }
 
 .post-tags {
