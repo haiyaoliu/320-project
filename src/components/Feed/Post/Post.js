@@ -17,14 +17,15 @@ const FeedHeader = () => {
     Spacing is done in the <div> style
 */
 const Post = ({ writerName, recognizeeName, content, coreValue, createdAt }) => {
+    let timeValue = new Date(createdAt);
     if(!writerName) return <div />;
     return ( 
         <div>
             <Card className="one-post">
                 <Card.Body>
-                    <Card.Title>{writerName} recognized {recognizeeName}</Card.Title>
-                    <Card.Subtitle>{createdAt}</Card.Subtitle>
-                    <Card.Text>
+                    <Card.Title><p style={{ color: 'blue', display: 'inline' }}>{recognizeeName}</p> has been recognized by <p style={{ color: 'blue', display: 'inline' }}>{writerName}</p></Card.Title>
+                    <Card.Subtitle><small>{timeValue.toUTCString().slice(0,-3)}</small></Card.Subtitle>
+                    <Card.Text style={{ "margin-top":"10px"}}>
                         {content}
                     </Card.Text>
                 </Card.Body>
@@ -32,7 +33,7 @@ const Post = ({ writerName, recognizeeName, content, coreValue, createdAt }) => 
                     { coreValue.map((data, key) => {
                         return (
                             <ListGroup.Item className="post-tags">
-                                {data}
+                                <h4><span class="badge badge-pill badge-primary">{data}</span></h4>
                             </ListGroup.Item>
                         );
                     })}

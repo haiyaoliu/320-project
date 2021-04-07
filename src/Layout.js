@@ -63,7 +63,7 @@ function Layout(props) {
 
             <Container fluid>
               <Row>
-                <Col sm={2} style={{position:"fixed"}}>
+                <Col sm={2} style={{position:"fixed", padding: 0}}>
                   <Nav className="col-md-12 d-none d-md-block bg-light sidebar">
                     <Nav.Link href="#settings">Top Employees</Nav.Link>
                     <Nav.Link>Filter</Nav.Link>
@@ -71,7 +71,7 @@ function Layout(props) {
                   </Nav>
                 </Col>
 
-                <Col lg={{offset: 2}}>
+                <Col lg={{offset: 2}} style={{ "border-left": "2px solid  #AAAAAA"}}>
                   {children}
                 </Col>
               </Row>

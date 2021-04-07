@@ -1,25 +1,40 @@
 .recognition-header {
-    background-color: #f4e04d;
-    min-height: 10vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: #10375c;
+  background-color: gray;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #10375c;
 }
 
 .post-container {
-    width: 100%;
+  width: 100%;
 }
 
 .one-post {
-    margin: 10px 0;
+  margin: 10px 0;
+  border: 2px solid #aaaaaa;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .post-tags {
-    border-top:0 none; 
-    border-left:0 none;
-    border-right:0 none;
-    border-bottom:0 none;
+  border-top: 0 none;
+  border-left: 0 none;
+  border-right: 0 none;
+  border-bottom: 0 none;
+}
+
+.list-group-item {
+  padding-top: 0;
+  padding-bottom: 0.3rem;
+  padding-right: 1rem;
+  padding-left: 0;
+}
+
+.list-group-horizontal {
+  border-top: None !important;
+  justify-content: flex-end;
 }

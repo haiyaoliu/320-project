@@ -64,11 +64,8 @@
 }
 
 .modal-header {
+  background-color: lightgray;
   padding: 0.6rem;
-}
-
-.modal-content {
-  border-radius: 1.3rem !important;
 }
 
 @media (min-width: 768px) {
