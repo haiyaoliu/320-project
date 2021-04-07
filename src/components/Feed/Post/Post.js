@@ -7,7 +7,14 @@ import { ListGroup, Card, Container, Col, Row } from "react-bootstrap";
 const FeedHeader = () => {
     return (
         <header className="recognition-header">
-            <h2>Recognitions</h2>
+            <ul class="nav">
+                <li class="all recognition">
+                    <a class="nav-link active">All Recogition</a>
+                </li>
+                <li class="my recognition">
+                    <a class="nav-link">My Recognition</a>
+                </li>
+            </ul>
         </header>
     );
 };
