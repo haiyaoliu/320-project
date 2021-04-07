@@ -18,7 +18,7 @@ const FeedHeader = () => {
 */
 const Post = ({ writerName, recognizeeName, content, coreValue, createdAt }) => {
     if(!writerName) return <div />;
-    return ( 
+    return (
         <div>
             <Card className="one-post">
                 <Card.Body>
@@ -42,9 +42,9 @@ const Post = ({ writerName, recognizeeName, content, coreValue, createdAt }) => 
     );
 }
 
-export const Posts = () => {
+export const Posts = (props) => {
     const [postData, setPostData] = useState([]);
-    
+
     const getPostData = () => {
         axios.get('/feed/displayRecognitions')
             .then(response => {
@@ -53,10 +53,11 @@ export const Posts = () => {
             })
             .catch(error => console.log("Error: ", error));
     }
-    
+
     useEffect(() => {
-        getPostData()
-    }, []);
+        getPostData();
+        console.log(props.forceUpdateValue);
+    }, [props.forceUpdateValue]);
 
     return (
         <div>
@@ -65,7 +66,7 @@ export const Posts = () => {
                 {postData.map((data, key) => {
                     return (
                         <div key={key}>
-                            <Post 
+                            <Post
                                 key={key}
                                 writerName={data.writerName}
                                 recognizeeName={data.recognizeeName}
