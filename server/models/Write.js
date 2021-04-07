@@ -9,7 +9,13 @@ const WriteSchema = new Schema({
     recognizeeName: String,
     content: String,
     coreValue: Array,
-    createdAt: Date
+    createdAt: Date,
+    like: Number,
+    celebrate: Number,
+    support: Number,
+    love: Number,
+    insightful: Number,
+    curious: Number
 });
 
 mongoose.model("Write", WriteSchema, "user_recognition");
