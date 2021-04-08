@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Layout.css";
-import { Nav, Navbar, Container, Row, Col, Image, Form, FormControl, Button  } from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { Nav, Navbar, Container, Row, Col, Image, Form, FormControl, InputGroup } from "react-bootstrap";
 import { BrowserRouter as Route, Router, Redirect, Switch } from "react-router-dom";
 import PostModal from "../PostModal/PostModal"
 
@@ -59,13 +61,19 @@ function Layout(props) {
                 </Col>
                 <Col sm={{offset:2}} className="navbar-right">
                   <Navbar variant="dark" sticky="top" >
-                    <Nav class="ml-auto" style={{ "margin-right":"10px"}}>
+                    <Nav class="ml-auto" style={{ "marginRight":"10px"}}>
                       <PostModal peers={peers} positions={position} writerName={writerName}
                         companies={company} userID={employeeID} writerID={writerID} />
                     </Nav>
                     <Form inline>
-                      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                      <Button variant="outline-primary">Search</Button>
+                      <InputGroup>
+                        <FormControl type="text" placeholder="Search" className="" />
+                        <InputGroup.Prepend>
+                          <InputGroup.Text>
+                            <FontAwesomeIcon icon={faSearch} />
+                          </InputGroup.Text>
+                        </InputGroup.Prepend>
+                      </InputGroup>
                     </Form>
                   </Navbar>
                 </Col>
