@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 // import { postData } from "./test_posts" // CHANGE THIS
-import { ListGroup, Card, Container, Col, Row } from "react-bootstrap";
+import { ListGroup, Card, Container, Col, Row, Nav, ButtonGroup, Button } from "react-bootstrap";
 
 // HEADER
 const FeedHeader = () => {
     return (
         <header className="recognition-header">
-            <ul class="nav">
-                <li class="all recognition">
-                    <a class="nav-link active">All Recogition</a>
-                </li>
-                <li class="my recognition">
-                    <a class="nav-link">My Recognition</a>
-                </li>
-            </ul>
+            <Nav as="ul">
+                <Nav.Item as="li">
+                    <Nav.Link active>All Recognitions</Nav.Link>
+                </Nav.Item>
+                <Nav.Item as="li">
+                    <Nav.Link>My Recognitions</Nav.Link>
+                </Nav.Item>
+                <ButtonGroup as="ButtonGroup">
+                    <Button>Past Day</Button>
+                    <Button>Past Week</Button>
+                    <Button>Past Month</Button>
+                    <Button>Past Year</Button>
+                    <Button active>All Time</Button>
+                </ButtonGroup>
+            </Nav>
         </header>
     );
 };
