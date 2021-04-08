@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../Layout";
+import Layout from "../Layout/Layout";
 import axios from "axios";
 import parser from "body-parser";
 import { postData } from "./Post/test_posts";

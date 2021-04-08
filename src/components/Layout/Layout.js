@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Nav, Navbar, Container, Row, Col } from "react-bootstrap";
+import "./Layout.css";
+import { Nav, Navbar, Container, Row, Col, Image, Form, FormControl, Button  } from "react-bootstrap";
 import { BrowserRouter as Route, Router, Redirect, Switch } from "react-router-dom";
-import PostModal from "./components/PostModal/PostModal"
+import PostModal from "../PostModal/PostModal"
 
 // This component is for if we want add something that is universal to every page, like a header or footer
 function Layout(props) {
@@ -41,37 +42,46 @@ function Layout(props) {
 
     return (
         <div>
-            <Navbar bg="dark" variant="dark" sticky="top">
-                <Navbar.Brand href="/dashboard" className="mr-auto">
-                  <img
-                    src="/ukg.png"
-                    width="30"
-                    height="30"
-                    className="d-inline-block align-top"
-                    alt="Logo"
-                  />{'   '}
-                  UKG
-                </Navbar.Brand>
-                <Nav>
-                    <PostModal peers={peers} positions={position} writerName = {writerName}
-                     companies={company} userID={employeeID} writerID={writerID}/>
-                </Nav>
-                <Nav>
-                    <Nav.Link href="/">Log Out</Nav.Link>
-                </Nav>
-            </Navbar>
-
             <Container fluid>
-              <Row>
-                <Col sm={2} style={{position:"fixed", padding: 0}}>
-                  <Nav className="col-md-12 d-none d-md-block bg-light sidebar">
+              <Row className="header-content">
+                <Col sm={2} className="company-logo" style={{ background: "#EEEEEE" }}>
+                  <Navbar variant="dark" sticky="top">
+                    <Navbar.Brand href="/dashboard" >
+                      <Image
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/UKG_%28Ultimate_Kronos_Group%29_logo.svg/1200px-UKG_%28Ultimate_Kronos_Group%29_logo.svg.png"
+                        width="88"
+                        height="28"
+                        className="d-inline-block align-top"
+                        alt="Logo"
+                      />{'   '}
+                    </Navbar.Brand>
+                  </Navbar>
+                </Col>
+                <Col sm={{offset:2}} className="navbar-right">
+                  <Navbar variant="dark" sticky="top" >
+                    <Nav class="ml-auto" style={{ "margin-right":"10px"}}>
+                      <PostModal peers={peers} positions={position} writerName={writerName}
+                        companies={company} userID={employeeID} writerID={writerID} />
+                    </Nav>
+                    <Form inline>
+                      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                      <Button variant="outline-primary">Search</Button>
+                    </Form>
+                  </Navbar>
+                </Col>
+              </Row>
+
+              <Row style={{ "padding-top": "56px"}}>
+                <Col lg={2} style={{position:"fixed"}}>
+                  <Nav className="col-md-12 d-none d-md-block sidebar">
                     <Nav.Link href="#settings">Top Employees</Nav.Link>
                     <Nav.Link>Filter</Nav.Link>
+                    <Nav.Link href="/">Log Out</Nav.Link>
                     <href></href>
                   </Nav>
                 </Col>
 
-                <Col lg={{offset: 2}} style={{ "border-left": "2px solid  #AAAAAA"}}>
+                <Col className="body-content" lg={{offset: 2}}>
                   {children}
                 </Col>
               </Row>

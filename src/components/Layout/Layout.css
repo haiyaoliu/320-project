@@ -1,0 +1,26 @@
+.header-content {
+  border-bottom: 2px solid #aaaaaa;
+}
+
+.body-content {
+  border-left: 2px solid #aaaaaa;
+}
+
+.company-logo {
+  justify-content: center !important;
+  display: flex;
+  background: rgb(238, 238, 238);
+  position: fixed;
+  border-bottom: 2px solid #aaaaaa;
+}
+
+.navbar-right {
+  border-left: 2px solid #aaaaaa;
+  position: fixed;
+  border-bottom: 2px solid #aaaaaa;
+  background-color: white;
+  padding-top: 2px;
+  overflow: hidden;
+  z-index: 1000;
+  width: -webkit-fill-available;
+}
