@@ -11,26 +11,14 @@ import { getToken, removeUserSession, setUserSession } from './utils/Common';
 
 export default function App(props) {
   const [users, setUsers] = useState([]);
-  const [authLoading, setAuthLoading] = useState(true);
-
+  
   useEffect(() => {
-    const token = getToken();
-    if(!token) {
-      return;
+    const loginUser = localStorage.getItem('user');
+    if(loginUser) {
+      const foundUser = JSON.parse(loginUser);
+      setUsers(foundUser);
     }
-
-    axios.get(`http://localhost:3000/verifyToken?token=${token}`).then(response => {
-      setUserSession(response.data.token, response.data.user);
-      setAuthLoading(false);
-    }).catch(error => {
-      removeUserSession();
-      setAuthLoading(false);
-      });
-    }, []);
-
-    if (authLoading && getToken()) {
-      return <div>Checking Authentication...</div>
-    }
+  }, []);
 
   return (
     <div>
