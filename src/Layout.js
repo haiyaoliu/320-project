@@ -2,11 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import { BrowserRouter as Route, Router, Redirect, Switch } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
+import { getUser, removeUserSession } from "./utils/Common";
 
 // This component is for if we want add something that is universal to every page, like a header or footer
 function Layout(props) {
     const [children, setChildren] = useState();
     useEffect(() => setChildren(props.children));
+
+    const user = getUser();
+ 
+    // handle click event of logout button
+    const handleLogout = () => {
+      removeUserSession();
+    }
 
     return (
         <div>
@@ -18,7 +26,7 @@ function Layout(props) {
                     <Nav.Link href="#pricing">Pricing</Nav.Link>
                 </Nav>
                 <Nav>
-                    <Nav.Link href="/">Log Out</Nav.Link>
+                    <Nav.Link href="/" onClick={handleLogout} >Log Out</Nav.Link>
                 </Nav>
             </Navbar>
             {children}

@@ -5,6 +5,7 @@ import { Form, Button } from "react-bootstrap";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Layout from "../../Layout";
 import "./Login.css";
+import { setUserSession } from "../../utils/Common";
 
 function Login(props) {
     const [email, setEmail] = useState("");
@@ -20,23 +21,23 @@ function Login(props) {
             email: email,
             password: password
         }
-        axios.post('/login', sendLogin)
-            .then(response => {
-                props.setUser(email)
-                console.log("RESPONSE", response);
-                //check if valid response
-                //if yes:
-                if(response.status == 200 && response.data.token){
-                    console.log("LOGIN SUCCESS")
-                    props.history.push("/dashboard")
-                }
-                else{
-                    setError(true);
-                }
-            })
-            .catch(error => {
-                console.error('There was an error!', error);
-            });
+        axios.post('/login', sendLogin).then(response => {
+            console.log("RESPONSE", response);
+            //check if valid response
+            //if yes:
+            if(response.status == 200 && response.data.token) {
+                setUserSession(response.data.token, response.config.data);
+                console.log("LOGIN SUCCESS")
+                props.history.push("/dashboard")
+            }
+            else{
+                setError(true);
+                sessionStorage.removeItem('token')
+            }
+        })
+        .catch(error => {
+            console.error('There was an error!', error);
+        });
         event.preventDefault();
     }
     let isError = error;
@@ -96,4 +97,5 @@ function Login(props) {
         </Layout>
     );
 }
+
 export default Login;
