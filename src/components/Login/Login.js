@@ -3,7 +3,6 @@ import { Alert } from "bootstrap";
 import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Layout from "../Layout/Layout";
 import "./Login.css";
 
 function Login(props) {

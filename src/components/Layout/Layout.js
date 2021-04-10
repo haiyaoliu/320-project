@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Layout.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { Nav, Navbar, Container, Row, Col, Image, Form, FormControl, InputGroup } from "react-bootstrap";
 import { BrowserRouter as Route, Router, Redirect, Switch } from "react-router-dom";
-import PostModal from "../PostModal/PostModal"
+import PostModal from "../PostModal/PostModal";
+import Sidebar from "./Sidebar/Sidebar";
 
 // This component is for if we want add something that is universal to every page, like a header or footer
 function Layout(props) {
@@ -61,32 +60,36 @@ function Layout(props) {
                 </Col>
                 <Col sm={{offset:2}} className="navbar-right">
                   <Navbar variant="dark" sticky="top" >
-                    <Nav class="ml-auto" style={{ "marginRight":"10px"}}>
+                    <Nav class="ml-auto" style={{ "marginRight":"15px"}}>
                       <PostModal peers={peers} positions={position} writerName={writerName}
                         companies={company} userID={employeeID} writerID={writerID} />
                     </Nav>
                     <Form inline>
                       <InputGroup>
-                        <FormControl type="text" placeholder="Search" className="" />
-                        <InputGroup.Prepend>
-                          <InputGroup.Text>
-                            <FontAwesomeIcon icon={faSearch} />
+                        <FormControl type="text" placeholder="Search" className="search-box" />
+                        <InputGroup.Append>
+                          <InputGroup.Text className="search-icon">
+                            <Image
+                              src="search.svg"
+                            />
                           </InputGroup.Text>
-                        </InputGroup.Prepend>
+                        </InputGroup.Append>
                       </InputGroup>
                     </Form>
+                      <Image
+                        src="bell.svg"
+                        width="25"
+                        height="25"
+                        className="d-inline-block align-top"
+                        style = {{ marginLeft : "15px"}}
+                      />
                   </Navbar>
                 </Col>
               </Row>
 
               <Row style={{ "padding-top": "56px"}}>
                 <Col lg={2} style={{position:"fixed"}}>
-                  <Nav className="col-md-12 d-none d-md-block sidebar">
-                    <Nav.Link href="#settings">Top Employees</Nav.Link>
-                    <Nav.Link>Filter</Nav.Link>
-                    <Nav.Link href="/">Log Out</Nav.Link>
-                    <href></href>
-                  </Nav>
+                  <Sidebar />
                 </Col>
 
                 <Col className="body-content" lg={{offset: 2}}>

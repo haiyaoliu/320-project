@@ -24,3 +24,23 @@
   z-index: 1000;
   width: -webkit-fill-available;
 }
+
+.search-icon {
+  border-top-right-radius: 1.5rem !important;
+  border-bottom-right-radius: 1.5rem !important;
+  border-left: None !important;
+  height: 38px;
+  background-color: white !important;
+}
+
+.search-box {
+  border-radius: 1.5rem 0 0 1.5rem !important;
+  border-right: None !important;
+  width: 100px !important;
+}
+
+.search-box:focus,
+.search-box:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
