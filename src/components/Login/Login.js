@@ -26,13 +26,13 @@ function Login(props) {
             //check if valid response
             //if yes:
             if(response.status == 200 && response.data.token) {
-                setUserSession(response.data.token, response.config.data);
+                setUserSession(response.data.token, email);
                 console.log("LOGIN SUCCESS")
                 props.history.push("/dashboard")
             }
             else{
                 setError(true);
-                sessionStorage.removeItem('token')
+                localStorage.removeItem('token')
             }
         })
         .catch(error => {
