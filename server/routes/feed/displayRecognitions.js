@@ -5,12 +5,10 @@ require("../../models/Write");
 const Recognition = mongoose.model("Write");
 
 router.get("/", async (req, res, done) => {
-  try {
-    const recognitions = await Recognition.find();
-    res.send(recognitions);
-  } catch (err) {
-    return console.error(err);
-  }
+  Recognition.find({}, null, { sort: { createdAt: 'desc' } }, function (err, users) {
+    if (err) return console.error(err);
+    res.send(users)
+  });
 });
 
 module.exports = router;

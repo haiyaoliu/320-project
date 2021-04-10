@@ -16,13 +16,13 @@ const FeedHeader = () => {
     Notes: can easily sub things in { } for stuff like matchNameToID(writerID)
     Spacing is done in the <div> style
 */
-const Post = ({ writerID, recognizeeID, content, coreValue, createdAt }) => {
-    if(!writerID) return <div />;
-    return ( 
+const Post = ({ writerName, recognizeeName, content, coreValue, createdAt }) => {
+    if(!writerName) return <div />;
+    return (
         <div>
             <Card className="one-post">
                 <Card.Body>
-                    <Card.Title>{writerID} recognized {recognizeeID}</Card.Title>
+                    <Card.Title>{writerName} recognized {recognizeeName}</Card.Title>
                     <Card.Subtitle>{createdAt}</Card.Subtitle>
                     <Card.Text>
                         {content}
@@ -42,9 +42,9 @@ const Post = ({ writerID, recognizeeID, content, coreValue, createdAt }) => {
     );
 }
 
-export const Posts = () => {
+export const Posts = (props) => {
     const [postData, setPostData] = useState([]);
-    
+
     const getPostData = () => {
         axios.get('/feed/displayRecognitions')
             .then(response => {
@@ -53,10 +53,11 @@ export const Posts = () => {
             })
             .catch(error => console.log("Error: ", error));
     }
-    
+
     useEffect(() => {
-        getPostData()
-    }, []);
+        getPostData();
+        console.log(props.forceUpdateValue);
+    }, [props.forceUpdateValue]);
 
     return (
         <div>
@@ -65,10 +66,10 @@ export const Posts = () => {
                 {postData.map((data, key) => {
                     return (
                         <div key={key}>
-                            <Post 
+                            <Post
                                 key={key}
-                                writerID={data.writerID}
-                                recognizeeID={data.recognizeeID}
+                                writerName={data.writerName}
+                                recognizeeName={data.recognizeeName}
                                 content={data.content}
                                 coreValue={data.coreValue}
                                 createdAt={data.createdAt}

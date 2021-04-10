@@ -9,13 +9,14 @@ import { Container } from "react-bootstrap";
 
 
 function Feed(props) {
+    console.log("Feed forceUpdateValue: ", props.forceUpdateValue);
 
     return (
         <div >
             <Container fluid style={{width:'60%'}}>
-                <Posts />
+                <Posts forceUpdateValue={props.forceUpdateValue}  />
             </Container>
-            
+
         </div>
     );
 }
