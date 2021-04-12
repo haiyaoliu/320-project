@@ -3,7 +3,6 @@ import { Alert } from "bootstrap";
 import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Layout from "../../Layout";
 import "./Login.css";
 
 function Login(props) {
@@ -53,7 +52,7 @@ function Login(props) {
         }
     }
     return (
-        <Layout>
+        <>
             <br />
             <section className="text-center">
                 <div className="container">
@@ -93,7 +92,7 @@ function Login(props) {
                     <img src="ukg1.jpg" />
                 </div>
             </section>
-        </Layout>
+        </>
     );
 }
 export default Login;

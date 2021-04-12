@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 // import { postData } from "./test_posts" // CHANGE THIS
-import { ListGroup, Card, Container, Col, Row } from "react-bootstrap";
+import { ListGroup, Card, Container, Col, Row, Nav, ButtonGroup, Button } from "react-bootstrap";
 
 // HEADER
 const FeedHeader = () => {
     return (
         <header className="recognition-header">
-            <h2>Recognitions</h2>
+            <Nav as="ul">
+                <Nav.Item as="li">
+                    <Nav.Link active>All Recognitions</Nav.Link>
+                </Nav.Item>
+                <Nav.Item as="li">
+                    <Nav.Link>My Recognitions</Nav.Link>
+                </Nav.Item>
+                <ButtonGroup as="ButtonGroup">
+                    <Button>Past Day</Button>
+                    <Button>Past Week</Button>
+                    <Button>Past Month</Button>
+                    <Button>Past Year</Button>
+                    <Button active>All Time</Button>
+                </ButtonGroup>
+            </Nav>
         </header>
     );
 };
@@ -17,14 +31,15 @@ const FeedHeader = () => {
     Spacing is done in the <div> style
 */
 const Post = ({ writerName, recognizeeName, content, coreValue, createdAt }) => {
+    let timeValue = new Date(createdAt);
     if(!writerName) return <div />;
     return (
         <div>
             <Card className="one-post">
                 <Card.Body>
-                    <Card.Title>{writerName} recognized {recognizeeName}</Card.Title>
-                    <Card.Subtitle>{createdAt}</Card.Subtitle>
-                    <Card.Text>
+                    <Card.Title><p style={{ color: 'blue', display: 'inline' }}>{recognizeeName}</p> has been recognized by <p style={{ color: 'blue', display: 'inline' }}>{writerName}</p></Card.Title>
+                    <Card.Subtitle><small>{timeValue.toUTCString().slice(0,-3)}</small></Card.Subtitle>
+                    <Card.Text style={{ "margin-top":"10px"}}>
                         {content}
                     </Card.Text>
                 </Card.Body>
@@ -32,7 +47,7 @@ const Post = ({ writerName, recognizeeName, content, coreValue, createdAt }) => 
                     { coreValue.map((data, key) => {
                         return (
                             <ListGroup.Item className="post-tags">
-                                {data}
+                                <h4><span class="badge badge-pill badge-primary">{data}</span></h4>
                             </ListGroup.Item>
                         );
                     })}
