@@ -152,7 +152,7 @@ const PostModal = (props) => {
                         <Dropdown>
                             <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
                                 <span className="bodyTiny chooseEmployeePadding">
-                                    Choose a Peer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Choose a Peer&nbsp;&nbsp;
                                 </span>
                             </Dropdown.Toggle>
 
@@ -174,17 +174,19 @@ const PostModal = (props) => {
                                 <Image src="https://randomuser.me/api/portraits/men/1.jpg" id="peerAvatar" rounded />
                             </div>
                         </Col>
-                        <Col className="bodyTiny center shifted employeeDetailsContainer">
-                                    <div className="fullWidth center">
-                                       {recognizee}
-                                    </div>
-                                    <div className="fullWidth center" id="peerPosition">
-                                        {props.positions[1]}
-                                    </div>
-                                    <div className="fullWidth center" id="peerCompany">
-                                        {props.companies[1]}
-                                    </div>
-                        </Col>
+                    </Row>
+                    <Row>
+                      <Col className="bodyTiny center shifted employeeDetailsContainer">
+                        <div className="fullWidth center">
+                          {recognizee}
+                        </div>
+                        <div className="fullWidth center" id="peerPosition">
+                          {props.positions[1]}
+                        </div>
+                        <div className="fullWidth center" id="peerCompany">
+                          {props.companies[1]}
+                        </div>
+                      </Col>
                     </Row>
                 </Col>
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../Layout";
+import Layout from "../Layout/Layout";
 import axios from "axios";
 import parser from "body-parser";
 import { postData } from "./Post/test_posts";
@@ -13,7 +13,7 @@ function Feed(props) {
 
     return (
         <div >
-            <Container fluid style={{width:'60%'}}>
+            <Container fluid>
                 <Posts forceUpdateValue={props.forceUpdateValue}  />
             </Container>
 
