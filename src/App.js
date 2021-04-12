@@ -11,12 +11,16 @@ import { getToken, removeUserSession, setUserSession } from './utils/Common';
 
 export default function App(props) {
   const [users, setUsers] = useState([]);
-  
+
   useEffect(() => {
     const loginUser = localStorage.getItem('user');
     if(loginUser) {
-      const foundUser = JSON.parse(loginUser);
-      setUsers(foundUser);
+      try {
+         const foundUser = JSON.parse(loginUser);
+         setUsers(foundUser);
+      } catch (error) {
+         console.error(error);
+      }
     }
   }, []);
 
