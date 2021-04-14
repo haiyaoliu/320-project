@@ -42,16 +42,23 @@ const Post = ({ writerName, recognizeeName, content, coreValue, createdAt }) => 
                     <Card.Text style={{ "margin-top":"10px"}}>
                         {content}
                     </Card.Text>
-                </Card.Body>
-                <ListGroup horizontal>
-                    { coreValue.map((data, key) => {
+                    <Row>
+                        <Col>{ coreValue.map((data, key) => {
                         return (
-                            <ListGroup.Item className="post-tags">
-                                <h4><span class="badge badge-pill badge-primary">{data}</span></h4>
-                            </ListGroup.Item>
+                            <div className="post-tags">
+                                <h4><span style={{ float: "left", "marginRight": "8px" }} class="badge badge-pill badge-primary">{data}</span></h4>
+                            </div>
                         );
-                    })}
-                </ListGroup>
+                    })}</Col>
+                        <Col>{ coreValue.map((data, key) => {
+                        return (
+                            <div className="post-tags">
+                                <h4><span style={{ float: "right", "marginRight": "8px" }} class="badge badge-pill badge-primary">{data}</span></h4>
+                            </div>
+                        );
+                    })}</Col>
+                    </Row>
+                </Card.Body>
             </Card>
         </div>
     );
