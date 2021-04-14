@@ -34,7 +34,7 @@ function onReactionPress(reactionType, postId) {
     Notes: can easily sub things in { } for stuff like matchNameToID(writerID)
     Spacing is done in the <div> style
 */
-const Post = ({ postId, writerName, recognizeeName, content, coreValue, createdAt }) => {
+const Post = ({ like, celebrate, support, love, insightful, curious, postId, writerName, recognizeeName, content, coreValue, createdAt }) => {
     let timeValue = new Date(createdAt);
     if(!writerName) return <div />;
     return (
@@ -51,37 +51,37 @@ const Post = ({ postId, writerName, recognizeeName, content, coreValue, createdA
                             <Button bsPrefix="reaction-button" onClick={() => onReactionPress("like", postId)}>
                                 <Image className="emoji-padding" src="like.svg" rounded />
                                 <Badge className="badge-mods">
-                                    0
+                                    {like}
                                 </Badge>
                             </Button>
                             <Button bsPrefix="reaction-button" onClick={() => onReactionPress("celebrate", postId)}>
                                 <Image className="emoji-padding" src="celebrate.svg" rounded />
                                 <Badge className="badge-mods">
-                                    0
+                                    {celebrate}
                                 </Badge>
                             </Button>
                             <Button bsPrefix="reaction-button" onClick={() => onReactionPress("support", postId)}>
                                 <Image className="emoji-padding" src="support.svg" rounded />
                                 <Badge className="badge-mods">
-                                    0
+                                    {support}
                                 </Badge>
                             </Button>
                             <Button bsPrefix="reaction-button" onClick={() => onReactionPress("love", postId)}>
                                 <Image className="emoji-padding" src="love.svg" rounded />
                                 <Badge className="badge-mods">
-                                    0
+                                    {love}
                                 </Badge>
                             </Button>
                             <Button bsPrefix="reaction-button" onClick={() => onReactionPress("insightful", postId)}>
                                 <Image className="emoji-padding" src="insightful.svg" rounded />
                                 <Badge className="badge-mods">
-                                    0
+                                    {insightful}
                                 </Badge>
                             </Button>
                             <Button bsPrefix="reaction-button" onClick={() => onReactionPress("curious", postId)}>
                                 <Image className="emoji-padding" src="curious.svg" rounded />
                                 <Badge className="badge-mods">
-                                    0
+                                    {curious}
                                 </Badge>
                             </Button>
                         </Col>
@@ -108,7 +108,7 @@ export const Posts = (props) => {
     const getPostData = () => {
         axios.get('/feed/displayRecognitions')
             .then(response => {
-                console.log(response);
+                //console.log(response);
                 const allPosts = response.data;
                 setPostData(allPosts);
             })
@@ -128,6 +128,12 @@ export const Posts = (props) => {
                     return (
                         <div key={key}>
                             <Post
+                                like={data.like || 0}
+                                celebrate={data.celebrate || 0}
+                                support={data.support || 0}
+                                love={data.love || 0}
+                                insightful={data.insightful || 0}
+                                curious={data.curious || 0}
                                 postId={data._id}
                                 key={key}
                                 writerName={data.writerName}
