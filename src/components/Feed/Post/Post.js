@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 // import { postData } from "./test_posts" // CHANGE THIS
-import { ListGroup, Card, Container, Col, Row, Nav, ButtonGroup, Button } from "react-bootstrap";
+import { ListGroup, Card, Container, Col, Row, Nav, ButtonGroup, Button, Badge, Image} from "react-bootstrap";
 
 // HEADER
 const FeedHeader = () => {
@@ -26,37 +26,75 @@ const FeedHeader = () => {
     );
 };
 
+function onReactionPress(reactionType, postId) {
+    axios.patch(`/feed/addReaction/${reactionType}/${postId}`).then(console.log)
+}
+
 /*  POST COMPONENT
     Notes: can easily sub things in { } for stuff like matchNameToID(writerID)
     Spacing is done in the <div> style
 */
-const Post = ({ writerName, recognizeeName, content, coreValue, createdAt }) => {
+const Post = ({ postId, writerName, recognizeeName, content, coreValue, createdAt }) => {
     let timeValue = new Date(createdAt);
     if(!writerName) return <div />;
     return (
         <div>
             <Card className="one-post">
-                <Card.Body>
+                <Card.Body className="card-padding">
                     <Card.Title><p style={{ color: 'blue', display: 'inline' }}>{recognizeeName}</p> has been recognized by <p style={{ color: 'blue', display: 'inline' }}>{writerName}</p></Card.Title>
                     <Card.Subtitle><small>{timeValue.toUTCString().slice(0,-3)}</small></Card.Subtitle>
                     <Card.Text style={{ "margin-top":"10px"}}>
                         {content}
                     </Card.Text>
-                    <Row>
+                    <Row className="row-padding">
+                        <Col>
+                            <Button bsPrefix="reaction-button" onClick={() => onReactionPress("like", postId)}>
+                                <Image className="emoji-padding" src="like.svg" rounded />
+                                <Badge className="badge-mods">
+                                    0
+                                </Badge>
+                            </Button>
+                            <Button bsPrefix="reaction-button" onClick={() => onReactionPress("celebrate", postId)}>
+                                <Image className="emoji-padding" src="celebrate.svg" rounded />
+                                <Badge className="badge-mods">
+                                    0
+                                </Badge>
+                            </Button>
+                            <Button bsPrefix="reaction-button" onClick={() => onReactionPress("support", postId)}>
+                                <Image className="emoji-padding" src="support.svg" rounded />
+                                <Badge className="badge-mods">
+                                    0
+                                </Badge>
+                            </Button>
+                            <Button bsPrefix="reaction-button" onClick={() => onReactionPress("love", postId)}>
+                                <Image className="emoji-padding" src="love.svg" rounded />
+                                <Badge className="badge-mods">
+                                    0
+                                </Badge>
+                            </Button>
+                            <Button bsPrefix="reaction-button" onClick={() => onReactionPress("insightful", postId)}>
+                                <Image className="emoji-padding" src="insightful.svg" rounded />
+                                <Badge className="badge-mods">
+                                    0
+                                </Badge>
+                            </Button>
+                            <Button bsPrefix="reaction-button" onClick={() => onReactionPress("curious", postId)}>
+                                <Image className="emoji-padding" src="curious.svg" rounded />
+                                <Badge className="badge-mods">
+                                    0
+                                </Badge>
+                            </Button>
+                        </Col>
                         <Col>{ coreValue.map((data, key) => {
-                        return (
-                            <div className="post-tags">
-                                <h4><span style={{ float: "left", "marginRight": "8px" }} class="badge badge-pill badge-primary">{data}</span></h4>
-                            </div>
-                        );
-                    })}</Col>
-                        <Col>{ coreValue.map((data, key) => {
-                        return (
-                            <div className="post-tags">
-                                <h4><span style={{ float: "right", "marginRight": "8px" }} class="badge badge-pill badge-primary">{data}</span></h4>
-                            </div>
-                        );
-                    })}</Col>
+                                return (
+                                    <div className="post-tags">
+                                        <Badge pill bsPrefix="reaction-tags">
+                                            {data}
+                                        </Badge>
+                                    </div>
+                                );
+                              })}
+                        </Col>
                     </Row>
                 </Card.Body>
             </Card>
@@ -70,6 +108,7 @@ export const Posts = (props) => {
     const getPostData = () => {
         axios.get('/feed/displayRecognitions')
             .then(response => {
+                console.log(response);
                 const allPosts = response.data;
                 setPostData(allPosts);
             })
@@ -89,6 +128,7 @@ export const Posts = (props) => {
                     return (
                         <div key={key}>
                             <Post
+                                postId={data._id}
                                 key={key}
                                 writerName={data.writerName}
                                 recognizeeName={data.recognizeeName}

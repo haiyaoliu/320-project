@@ -48,6 +48,7 @@ router.patch("/love/:postId", (req, res, done) => {
         }
     );
 });
+
 router.patch("/insightful/:postId", (req, res, done) => {
     Write.findOneAndUpdate(
         { _id: req.params.postId },
