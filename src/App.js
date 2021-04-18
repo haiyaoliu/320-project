@@ -4,7 +4,8 @@ import "./styles.css";
 import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard"
 import Login from "./components/Login/Login"
-import Feed from "./components/Feed/Feed";
+import Feed from "./components/Feed/Feed"
+import Rankings from "./components/Rankings/Rankings";
 import PrivateRoute from './utils/PrivateRoute';
 import PublicRoute from './utils/PublicRoute';
 import { getToken, removeUserSession, setUserSession } from './utils/Common';
@@ -33,6 +34,7 @@ export default function App(props) {
           )} />
           <PublicRoute path="/login" component={Login} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
+          <PrivateRoute path="/topemployees" component={Rankings} />
         </Switch>
         <Redirect from="/" to="login" />
       </Router>
