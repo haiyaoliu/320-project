@@ -15,7 +15,9 @@ const WriteSchema = new Schema({
     support: Number,
     love: Number,
     insightful: Number,
-    curious: Number
+    curious: Number,
+    reported: Boolean,
+    reportReason: String
 });
 
 mongoose.model("Write", WriteSchema, "user_recognition");
