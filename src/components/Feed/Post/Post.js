@@ -26,15 +26,10 @@ const FeedHeader = () => {
     );
 };
 
-// For updating on reactions
-function useForceUpdate() {
-    const [value, setValue] = useState(0);
-    return () => setValue(value => value+1);
-}
-
 function onReactionPress(reactionType, postId, forceUpdate) {
-    axios.patch(`/feed/addReaction/${reactionType}/${postId}`).then(console.log)
-    forceUpdate();
+    axios.patch(`/feed/addReaction/${reactionType}/${postId}`).then(() => {
+        forceUpdate();
+    });
 }
 
 /*  POST COMPONENT
@@ -42,10 +37,6 @@ function onReactionPress(reactionType, postId, forceUpdate) {
     Spacing is done in the <div> style
 */
 const Post = ({ like, celebrate, support, love, insightful, curious, postId, writerName, recognizeeName, content, coreValue, createdAt, reactionUpdate }) => {
-    // const [forceUpdateValue, setForceUpdateValue] = useState(0);
-    // const forceUpdate = () => setForceUpdateValue(forceUpdateValue + 1);
-    const forceUpdate = useForceUpdate();
-
     let timeValue = new Date(createdAt);
     if(!writerName) return <div />;
     return (
