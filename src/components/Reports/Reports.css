@@ -1,0 +1,31 @@
+.profile-header {
+  margin-bottom: 5rem;
+}
+
+.profile-header-info p {
+  margin-top: 5px;
+}
+
+.profile-header-cover {
+  height: 15rem;
+  border-bottom: 2px solid #000000;
+}
+
+.profile-header-avatar {
+  margin-left: 3.5rem;
+  margin-top: -10rem;
+  float: left;
+  width: 13rem;
+}
+
+.profile-position {
+  width: 39%;
+  float: left;
+}
+
+.profile-contact {
+  width: 40%;
+  float: left;
+  text-align: right;
+  padding-right: 10px;
+}
