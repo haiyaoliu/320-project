@@ -25,6 +25,9 @@ router.get("/myRecognition", async (req, res, done) => {
 
   const user = await Users.findOne({ email: userEmail }).exec();
 
+  if (user === null) {
+    res.send([]);
+  }
   Recognition.find(
     { writerID: user.employeeId },
     null,
