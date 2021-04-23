@@ -32,7 +32,10 @@ function Layout(props) {
         console.error('There was an error!', error);
       });
       
-      axios.post("write/getCurrentUser", { email: String(props.user) }).then((response) => {
+      let email = localStorage.getItem('user')
+      let emailString = email.slice(1, email.length-1)
+      
+      axios.post("write/getCurrentUser", { email: emailString }).then((response) => {
         setWriterID(response.data["employeeId"]);
         setWriterName(response.data["firstName"] + ' ' + response.data["lastName"])
       }).catch(error => {

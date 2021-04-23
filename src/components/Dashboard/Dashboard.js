@@ -7,7 +7,6 @@ import Feed from "../Feed/Feed"
 
 function useForceUpdate() {
     const [value, setValue] = useState(0);
-    console.log("I've forced an update!");
     return () => setValue(value => value++);
 }
 

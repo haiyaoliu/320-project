@@ -1,0 +1,122 @@
+#wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    padding: 3%;
+    background: url("images/text_emphasis.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-family: Chalkboard;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 28px;
+    text-align: center;
+}
+
+.high-achievers {
+    width: 40%;
+    display: inline-block;
+    vertical-align: top;
+    border-right: solid 2px lightgray;
+}
+
+h2 {
+    font-family: Chalkboard;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 26px;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 2%;
+    padding-bottom: 1%;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-bottom: solid 2px lightgray;
+    width: 300px;
+}
+
+.bold-blue {
+    color: mediumblue;
+}
+
+.number {
+    overflow: hidden;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    display: block;
+    font-size: 25px;
+    line-height: 25px;
+}
+
+.number .profile-pic {
+    display: inline-block;
+    width: 50%;
+}
+
+.number .profile-pic img {
+    width: 75%;
+    background: none;
+    float: left;
+    display: block;
+    padding: 0;
+    border: solid 4px lightgray;
+    border-radius: 20px;
+    margin-left: 5%;
+    margin-bottom:20px;
+}
+
+.number img {
+    background-image: url("images/emphasis.svg");
+    padding: 20px 55px;
+    background-repeat: no-repeat;
+}
+
+.achiever-details {
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    width: 50%;
+}
+
+.achiever-name {
+    margin-top: 3%;
+    font-family: Chalkboard;
+    line-height: 40px;
+}
+
+.achievers {
+    width: 60%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+hr {
+    width: 60%;
+    border: none;
+    background: lightgray;
+    height: 2px;
+    margin-bottom: 30px;
+}
+
+.achievers-list > li{
+    font-family: Chalkboard;
+    list-style: none;
+    display: inline-block;
+    width: 220px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.achievers-list img {
+    border: solid 4px lightgray;
+    border-radius: 20px;
+}

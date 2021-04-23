@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "..", "build")));
 
 //APIs
-app.use("/testing_only", passport.authenticate("jwt-user", { session: false }));
+//app.use("/testing_only", passport.authenticate("jwt-user", { session: false }));
 app.use("/admin", passport.authenticate("jwt-admin", { session: false }));
 app.use("/", require("./routes"));
 
