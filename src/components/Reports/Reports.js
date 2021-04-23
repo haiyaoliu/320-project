@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../Layout/Layout";
 import "./Reports.css";
+import { ReportsList } from "./ReportPost";
 import { Posts } from "../Feed/Post/Post";
 import { Container, Image } from "react-bootstrap";
 import axios from "axios";
@@ -56,7 +57,7 @@ function Reports(props) {
                     </div>
                 </div>
                 <div className="profile-content">
-                    #TO DO HERE
+                    <ReportsList forceUpdateValue={props.forceUpdateValue} />
                 </div>
             </Container>
         </Layout>
