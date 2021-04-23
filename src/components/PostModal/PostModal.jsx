@@ -80,7 +80,7 @@ const PostModal = (props) => {
 
     const handleClose = () => { setShow(false); }
     const handleShow = () => {
-      axios.post("write/getCoreValue", { company: String(props.companies[0]) })
+      axios.post("write/getInfo/getCoreValue", { company: String(props.companies[0]) })
         .then(response => {
           setCoreValue(response.data["values"]);
         })
@@ -121,7 +121,7 @@ const PostModal = (props) => {
       document.getElementById("peerCompany").innerHTML = props.companies[i];
       document.getElementById("peerAvatar").src = "https://randomuser.me/api/portraits/men/" + String(i) + ".jpg";
 
-      axios.post("write/getCoreValue", { company: String(props.companies[i]) })
+      axios.post("write/getInfo/getCoreValue", { company: String(props.companies[i]) })
         .then(response => {
           setCoreValue(response.data["values"]);
         })
