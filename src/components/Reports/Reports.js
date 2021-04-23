@@ -18,9 +18,9 @@ function Reports(props) {
         axios.post("write/getCurrentUser", { email: emailString }).then((response) => {    
             let info = {
                 email: emailString,
-                fullName: response.data["firstName"] + ' ' + response.data["lastName"],
-                company: response.data["companyName"],
-                position: response.data["positionTitle"]
+                fullName: response.data.firstName + ' ' + response.data.lastName,
+                company: response.data.companyName,
+                position: response.data.positionTitle
             };
             setUserInfo(info);
             
@@ -56,7 +56,7 @@ function Reports(props) {
                     </div>
                 </div>
                 <div className="profile-content">
-                    <Posts></Posts> 
+                    #TO DO HERE
                 </div>
             </Container>
         </Layout>
