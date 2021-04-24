@@ -20,14 +20,14 @@ router.get("/", async (req, res, done) => {
   );
 });
 
-router.get("/myRecognition", async (req, res, done) => {
+router.post("/myRecognition", async (req, res, done) => {
   const { userEmail } = req.fields;
 
   const user = await Users.findOne({ email: userEmail }).exec();
-
   if (user === null) {
     res.send([]);
   }
+  
   Recognition.find(
     { writerID: user.employeeId },
     null,
@@ -52,4 +52,5 @@ router.get("/coreValues", async (req, res, done) => {
     }
   );
 });
+
 module.exports = router;
