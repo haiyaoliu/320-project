@@ -7,8 +7,6 @@ import { Posts } from "../Feed/Post/Post";
 import { Container, Image } from "react-bootstrap";
 import axios from "axios";
 
-
-
 function Reports(props) {
     const [userInfo, setUserInfo] = useState({})
     

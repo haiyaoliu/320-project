@@ -45,3 +45,17 @@
 .profile-content {
   min-height: 1000px;
 }
+
+/* -------- reports ------------ */
+.one-report {
+  margin: 10px 0;
+  border: 2px solid #aaaaaa;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.report-button-container {
+  margin-top: 8px;
+}
+.report-button {
+  margin-right: 8px;
+}

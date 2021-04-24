@@ -45,7 +45,7 @@ const Post = ({ like, celebrate, support, love, insightful, curious, postId, wri
                 <Card.Body className="card-padding">
                     <Card.Title><p style={{ color: 'blue', display: 'inline' }}>{recognizeeName}</p> has been recognized by <p style={{ color: 'blue', display: 'inline' }}>{writerName}</p></Card.Title>
                     <Card.Subtitle><small>{timeValue.toUTCString().slice(0,-3)}</small></Card.Subtitle>
-                    <Card.Text style={{ "margin-top":"10px"}}>
+                    <Card.Text style={{ "marginTop":"10px"}}>
                         {content}
                     </Card.Text>
                     <Row className="row-padding">
@@ -95,7 +95,7 @@ const Post = ({ like, celebrate, support, love, insightful, curious, postId, wri
                                         </Badge>
                                     </div>
                                 );
-                              })}
+                            })}
                         </Col>
                     </Row>
                 </Card.Body>
