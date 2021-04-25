@@ -6,10 +6,11 @@ import "./FilterFeed.css"
 
 function FilterFeed(props) {
 
+    console.log(props.location)
     return (
         <div >
             <Container fluid>
-                <Posts filterValue={props.filterValue} />
+                <Posts filterValue={props.location} />
             </Container>
         </div>
     );

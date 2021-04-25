@@ -9,7 +9,7 @@ function Filter(props) {
     
     return (
         <Layout >
-            <FilterFeed  filterValue={props.location.pathname.split("/").slice(-1)[0]} />
+            <FilterFeed location={props.location} />
         </Layout>
     );
 }

@@ -39,7 +39,7 @@ router.post("/myRecognition", async (req, res, done) => {
   );
 });
 
-router.get("/coreValues", async (req, res, done) => {
+router.post("/coreValues", async (req, res, done) => {
   const values = req.fields.values.split("&");
 
   Recognition.find(

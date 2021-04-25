@@ -113,7 +113,15 @@ export const Posts = (props) => {
 
         axios.post('/feed/displayRecognitions/myRecognition', { userEmail : emailString })
             .then(response => {
-                //console.log(response);
+                const allPosts = response.data;
+                setPostData(allPosts);
+            })
+            .catch(error => console.log("Error: ", error));
+    }
+
+    const coreValuesFilter = () => {
+        axios.post('/feed/displayRecognitions/coreValues', { values : props.filterValue.pathname.split('/').slice(-1)[0] })
+            .then(response => {
                 const allPosts = response.data;
                 setPostData(allPosts);
             })
@@ -121,8 +129,11 @@ export const Posts = (props) => {
     }
 
     useEffect(() => {
-        if(props.filterValue == "myrecognitions") {
-            myRecognitionsFilter();  
+        let path = props.filterValue.pathname
+        if(path.includes("myrecognitions")) {
+            myRecognitionsFilter()
+        } else if(path.includes("coreValues")) {
+            coreValuesFilter()
         }
     }, [props.forceUpdateValue, reactionUpdateValue]);
 
