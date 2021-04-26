@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./ReportPost.css";
 import { ListGroup, Card, Container, Col, Row, Nav, ButtonGroup, Button, Badge, Image} from "react-bootstrap";
 
 const Report = ({ postId, writerName, recognizeeName, content, createdAt, coreValue, reportReason }) => {
@@ -44,9 +45,9 @@ const Report = ({ postId, writerName, recognizeeName, content, createdAt, coreVa
                             );
                         })}
                     </Col>
-                    <hr />
-                    <div>
-                        <p className="report-reason" style={{color:'blue', display:'inline'}}>Report Info:&nbsp;</p>
+                    <div className="report-reason" >
+                        <Image src="info.svg"></Image>
+                        <p style={{ color:'#074EE8', display:'inline', "padding-left":"5px"}}>Report Info:&nbsp;</p>
                         {reportReason}
                     </div>
                     <div className="report-button-container">
