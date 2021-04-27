@@ -8,12 +8,12 @@ mongoose.set('useFindAndModify', false);
 router.patch("/like/:postId", async (req, res, done) => {
     const already = await Write.find({
         _id: req.params.postId,
-        like: { $in: [req.fields.reactorName] },
+        like: { $in: [req.fields.reacterName] },
     }).countDocuments();
     if(already) {
         Write.findOneAndUpdate(
             { _id: req.params.postId },
-            { $pull: { "like" : req.fields.reactorName } },
+            { $pull: { "like" : req.fields.reacterName } },
             function (err) {
                 if (err) return console.error(err);
             }
@@ -29,7 +29,7 @@ router.patch("/like/:postId", async (req, res, done) => {
     } else {
         Write.updateOne(
             { _id: req.params.postId },
-            { $addToSet: { "like" : req.fields.reactorName } },
+            { $addToSet: { "like" : req.fields.reacterName } },
             function (err) {
                 if (err) return console.error(err);
             }
@@ -48,12 +48,12 @@ router.patch("/like/:postId", async (req, res, done) => {
 router.patch("/celebrate/:postId", async (req, res, done) => {
     const already = await Write.find({
         _id: req.params.postId,
-        celebrate: { $in: [req.fields.reactorName] },
+        celebrate: { $in: [req.fields.reacterName] },
     }).countDocuments();
     if(already) {
         Write.findOneAndUpdate(
             { _id: req.params.postId },
-            { $pull: { "celebrate" : req.fields.reactorName } },
+            { $pull: { "celebrate" : req.fields.reacterName } },
             function (err) {
                 if (err) return console.error(err);
             }
@@ -69,7 +69,7 @@ router.patch("/celebrate/:postId", async (req, res, done) => {
     } else {
         Write.updateOne(
             { _id: req.params.postId },
-            { $addToSet: { "celebrate" : req.fields.reactorName } },
+            { $addToSet: { "celebrate" : req.fields.reacterName } },
             function (err) {
                 if (err) return console.error(err);
             }
@@ -88,12 +88,12 @@ router.patch("/celebrate/:postId", async (req, res, done) => {
 router.patch("/support/:postId", async (req, res, done) => {
     const already = await Write.find({
         _id: req.params.postId,
-        support: { $in: [req.fields.reactorName] },
+        support: { $in: [req.fields.reacterName] },
     }).countDocuments();
     if(already) {
         Write.findOneAndUpdate(
             { _id: req.params.postId },
-            { $pull: { "support" : req.fields.reactorName } },
+            { $pull: { "support" : req.fields.reacterName } },
             function (err) {
                 if (err) return console.error(err);
             }
@@ -109,7 +109,7 @@ router.patch("/support/:postId", async (req, res, done) => {
     } else {
         Write.updateOne(
             { _id: req.params.postId },
-            { $addToSet: { "support" : req.fields.reactorName } },
+            { $addToSet: { "support" : req.fields.reacterName } },
             function (err) {
                 if (err) return console.error(err);
             }
@@ -128,12 +128,12 @@ router.patch("/support/:postId", async (req, res, done) => {
 router.patch("/love/:postId", async (req, res, done) => {
     const already = await Write.find({
         _id: req.params.postId,
-        love: { $in: [req.fields.reactorName] },
+        love: { $in: [req.fields.reacterName] },
     }).countDocuments();
     if(already) {
         Write.findOneAndUpdate(
             { _id: req.params.postId },
-            { $pull: { "love" : req.fields.reactorName } },
+            { $pull: { "love" : req.fields.reacterName } },
             function (err) {
                 if (err) return console.error(err);
             }
@@ -149,7 +149,7 @@ router.patch("/love/:postId", async (req, res, done) => {
     } else {
         Write.updateOne(
             { _id: req.params.postId },
-            { $addToSet: { "love" : req.fields.reactorName } },
+            { $addToSet: { "love" : req.fields.reacterName } },
             function (err) {
                 if (err) return console.error(err);
             }
@@ -168,12 +168,12 @@ router.patch("/love/:postId", async (req, res, done) => {
 router.patch("/insightful/:postId", async (req, res, done) => {
     const already = await Write.find({
         _id: req.params.postId,
-        insightful: { $in: [req.fields.reactorName] },
+        insightful: { $in: [req.fields.reacterName] },
     }).countDocuments();
     if(already) {
         Write.findOneAndUpdate(
             { _id: req.params.postId },
-            { $pull: { "insightful" : req.fields.reactorName } },
+            { $pull: { "insightful" : req.fields.reacterName } },
             function (err) {
                 if (err) return console.error(err);
             }
@@ -189,7 +189,7 @@ router.patch("/insightful/:postId", async (req, res, done) => {
     } else {
         Write.updateOne(
             { _id: req.params.postId },
-            { $addToSet: { "insightful" : req.fields.reactorName } },
+            { $addToSet: { "insightful" : req.fields.reacterName } },
             function (err) {
                 if (err) return console.error(err);
             }
@@ -208,12 +208,12 @@ router.patch("/insightful/:postId", async (req, res, done) => {
 router.patch("/curious/:postId", async (req, res, done) => {
     const already = await Write.find({
         _id: req.params.postId,
-        curious: { $in: [req.fields.reactorName] },
+        curious: { $in: [req.fields.reacterName] },
     }).countDocuments();
     if(already) {
         Write.findOneAndUpdate(
             { _id: req.params.postId },
-            { $pull: { "curious" : req.fields.reactorName } },
+            { $pull: { "curious" : req.fields.reacterName } },
             function (err) {
                 if (err) return console.error(err);
             }
@@ -229,7 +229,7 @@ router.patch("/curious/:postId", async (req, res, done) => {
     } else {
         Write.updateOne(
             { _id: req.params.postId },
-            { $addToSet: { "curious" : req.fields.reactorName } },
+            { $addToSet: { "curious" : req.fields.reacterName } },
             function (err) {
                 if (err) return console.error(err);
             }
