@@ -29,7 +29,7 @@ const Report = ({ postId, writerName, recognizeeName, content, createdAt, coreVa
     return (
         <div>
             <Card className="one-report">
-                <Card.Body className="card-padding">
+                <Card.Body className="report-card-padding">
                     <Card.Title><p style={{ color: 'blue', display: 'inline' }}>{recognizeeName}</p> has been recognized by <p style={{ color: 'blue', display: 'inline' }}>{writerName}</p></Card.Title>
                     <Card.Subtitle><small>{timeValue.toUTCString().slice(0,-3)}</small></Card.Subtitle>
                     <Card.Text>
@@ -38,7 +38,7 @@ const Report = ({ postId, writerName, recognizeeName, content, createdAt, coreVa
                     <Col>{ coreValue.map((data, key) => {
                             return (
                                 <div className="post-tags" key={key}>
-                                    <Badge pill bsPrefix="reaction-tags">
+                                    <Badge pill bsPrefix="report-reaction-tags">
                                         {data}
                                     </Badge>
                                 </div>

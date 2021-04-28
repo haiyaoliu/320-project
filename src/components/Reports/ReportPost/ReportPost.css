@@ -6,7 +6,7 @@
   overflow: hidden;
 }
 
-.reaction-tags {
+.report-reaction-tags {
   margin-bottom: 1rem;
 }
 
@@ -29,6 +29,6 @@
   margin-top: 4rem;
 }
 
-.card-padding {
+.report-card-padding {
   padding-bottom: 1.25rem;
 }
