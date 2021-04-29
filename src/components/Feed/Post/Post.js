@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Feed.css";
-// import { postData } from "./test_posts" // CHANGE THIS
 import { ListGroup, Card, Container, Col, Row, Nav, ButtonGroup, Button, Badge, Image, Modal, Form} from "react-bootstrap";
 
 // HEADER
@@ -33,47 +32,52 @@ function onReactionPress(reactionType, postId, forceUpdate) {
     });
 }
 
-function ReportButton() {
+function ReportButton(props) {
     const [show, setShow] = useState(false);
     const [content, setContent] = useState("");
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    
+    const handleSubmit = (event) => {
+        console.log("Hello world!");
+        console.log(props.postId);
+        axios.patch(`/reports/writeReport/${props.postId}`, { reportReason: content });
+    };
+
     return (
       <>
         <Button variant="primary" onClick={handleShow} bsPrefix="report-button-transparent btn bg-transparent">
             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#AAAAAA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
         </Button>
-  
+
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Report a Post</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form className="fullHeight" onSubmit={{/*handleSubmit*/}}>
+            <Form className="fullHeight" onSubmit={handleSubmit}>
                 <Form.Group controlId="content" className="postBoxAlignment">
-                                <Row>
-                                    <Col>
-                                        <h5 style={{ marginTop: '5px' }}>Describe your report:</h5>
-                                    </Col>
-                                    <Col className="text-right">
-                                        <Button size="sm" type="submit" onClick={{handleClose}}>
-                                            Report
-                                            {/* <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> */}
-                                        </Button>
-                                    </Col>
-                                </Row>
-                                <div className="mt-2 flexGrow">
-                                    <div className="fullHeight">
-                                        <Form.Control
-                                          as="textarea" rows={6} className="postTextArea"
-                                          type="content"
-                                          value={content}
-                                        //   onChange ={(e) => setContent(e.target.value)}
-                                        />
-                                    </div>
-                                </div>
+                    <Row>
+                        <Col>
+                            <h5 style={{ marginTop: '5px' }}>Describe your report:</h5>
+                        </Col>
+                        <Col className="text-right">
+                            <Button size="sm" type="submit" onClick={{handleClose}}>
+                                Report
+                                {/* <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> */}
+                            </Button>
+                        </Col>
+                    </Row>
+                    <div className="mt-2 flexGrow">
+                        <div className="fullHeight">
+                            <Form.Control
+                              as="textarea" rows={6} className="postTextArea"
+                              type="content"
+                              value={content}
+                              onChange ={(e) => setContent(e.target.value)}
+                            />
+                        </div>
+                    </div>
                 </Form.Group>
             </Form>
           </Modal.Body>
@@ -96,7 +100,7 @@ const Post = ({ like, celebrate, support, love, insightful, curious, postId, wri
                     <Card.Title>
                         <div>
                             <p style={{ color: 'blue', display: 'inline' }}>{recognizeeName}</p> has been recognized by <p style={{ color: 'blue', display: 'inline' }}>{writerName}</p>
-                            <ReportButton />
+                            <ReportButton postId={postId} />
                         </div>
                     </Card.Title>
                     <Card.Subtitle><small>{timeValue.toUTCString().slice(0,-3)}</small></Card.Subtitle>
