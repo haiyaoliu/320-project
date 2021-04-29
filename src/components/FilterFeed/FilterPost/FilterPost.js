@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 // import { postData } from "./test_posts" // CHANGE THIS
 import { ListGroup, Card, Container, Col, Row, Nav, ButtonGroup, Button, Badge, Image} from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
 // HEADER
 const FilterFeedHeader = () => {
@@ -9,9 +10,11 @@ const FilterFeedHeader = () => {
         <header className="recognition-header">
             <Nav as="ul">
                 <Nav.Item as="li">
-                    <Nav.Link> Recognitions </Nav.Link>
+                    <Nav.Link as={NavLink} to="/dashboard">All Recognitions</Nav.Link>
                 </Nav.Item>
-                
+                <Nav.Item as="li">
+                    <Nav.Link active as={NavLink} to="/filter/myrecognitions">My Recognitions</Nav.Link>
+                </Nav.Item>
                 <ButtonGroup as="ButtonGroup">
                     <Button>Past Day</Button>
                     <Button>Past Week</Button>
