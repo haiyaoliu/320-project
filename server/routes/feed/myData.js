@@ -16,7 +16,7 @@ router.post("/", async (req, res, done) => {
   }
   
   Recognition.find(
-    { writerID: user.employeeId },
+    { recognizeeID: user.employeeId },
     null,
     function (err, regs) {
       if (err) return console.error(err);
