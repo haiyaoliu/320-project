@@ -17,6 +17,7 @@ function Layout(props) {
     const [employeeID, setEmployeeID] = useState([{}])
     const [writerID, setWriterID] = useState("")
     const [writerName, setWriterName] = useState("")
+    const [avatar, setAvatar] = useState("")
 
     useEffect(() => {
       axios.get("/write/getInfo/getPeerList").then((response) => {
@@ -24,10 +25,12 @@ function Layout(props) {
         let position = response.data.map(person => person.positionTitle);
         let company = response.data.map(person => person.companyName);
         let employeeID = response.data.map(person => person.employeeId);
+        let avatarUrl = response.data.map(person => person.legoCharacterUrl);
         setPeers(name);
         setPosition(position);
         setCompany(company);
         setEmployeeID(employeeID);
+        setAvatar(avatarUrl);
       }).catch(error => {
         console.error('There was an error!', error);
       });
@@ -64,7 +67,7 @@ function Layout(props) {
                 <Col sm={{offset:2}} className="navbar-right">
                   <Navbar variant="dark" sticky="top" >
                     <Nav class="ml-auto" style={{ "marginRight":"15px"}}>
-                      <PostModal peers={peers} positions={positions} writerName={writerName}
+                      <PostModal peers={peers} positions={positions} writerName={writerName} avatar={avatar}
                     companies={companies} userID={employeeID} writerID={writerID} forceUpdate={props.forceUpdate} />
                     </Nav>
                     <Form inline>

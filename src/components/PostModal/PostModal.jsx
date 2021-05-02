@@ -27,7 +27,7 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 // Dropdown needs access to the DOM node in order to position the Menu
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <a
-      href=""
+      href="/#"
       ref={ref}
       onClick={(e) => {
         e.preventDefault();
@@ -119,7 +119,7 @@ const PostModal = (props) => {
       setEmployeeID(props.userID[i])
       document.getElementById("peerPosition").innerHTML = props.positions[i];
       document.getElementById("peerCompany").innerHTML = props.companies[i];
-      document.getElementById("peerAvatar").src = "https://randomuser.me/api/portraits/men/" + String(i) + ".jpg";
+      document.getElementById("peerAvatar").src = props.avatar[i];
 
       axios.post("write/getInfo/getCoreValue", { company: String(props.companies[i]) })
         .then(response => {
@@ -171,7 +171,7 @@ const PostModal = (props) => {
                     <Row>
                         <Col className="bodySmall center">
                             <div className='mt-2'>
-                                <Image src="https://randomuser.me/api/portraits/men/1.jpg" id="peerAvatar" rounded />
+                                <Image src={props.avatar[0]} width="128" height="128"id="peerAvatar" rounded />
                             </div>
                         </Col>
                     </Row>

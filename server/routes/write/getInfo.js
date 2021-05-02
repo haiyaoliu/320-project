@@ -28,7 +28,7 @@ router.post("/getCurrentUser", (req, res, done) => {
 
 
 router.get("/getPeerList", (req, res, done) => {
-    User.find({}, 'firstName lastName positionTitle companyName employeeId', function (err, users) {
+    User.find({}, 'firstName lastName positionTitle companyName employeeId legoCharacterUrl', function (err, users) {
         if (err) return console.error(err);
         res.send(users)
     });
