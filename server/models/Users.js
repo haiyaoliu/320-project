@@ -14,6 +14,7 @@ const UsersSchema = new Schema({
   employeeId: Number,
   email: String,
   startDate: Date,
+  legoCharacterUrl: String
 });
 
 UsersSchema.methods.isValidPassword = async function (password) {
