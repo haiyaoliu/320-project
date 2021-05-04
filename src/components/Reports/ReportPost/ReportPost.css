@@ -7,7 +7,14 @@
 }
 
 .report-reaction-tags {
-  margin-bottom: 1rem;
+  float: right;
+  margin-left: 8px;
+  border: 2px solid #0000ff;
+  background-color: #e0eaff;
+  color: #0000ff;
+  border-radius: 2rem;
+  padding: 1.25px 10px;
+  font-size: 1rem
 }
 
 .one-report hr {

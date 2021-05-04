@@ -14,7 +14,7 @@ const FeedHeader = () => {
                 <Nav.Item as="li">
                     <Nav.Link>My Recognitions</Nav.Link>
                 </Nav.Item>
-                <ButtonGroup as="ButtonGroup">
+                <ButtonGroup>
                     <Button>Past Day</Button>
                     <Button>Past Week</Button>
                     <Button>Past Month</Button>
@@ -47,7 +47,7 @@ function ReportButton(props) {
     return (
       <>
         <Button variant="primary" onClick={handleShow} bsPrefix="report-button-transparent btn bg-transparent">
-            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#AAAAAA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#AAAAAA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
         </Button>
 
         <Modal show={show} onHide={handleClose}>
@@ -149,7 +149,7 @@ const Post = ({ like, celebrate, support, love, insightful, curious, postId, wri
                         <Col>{ coreValue.map((data, key) => {
                                 return (
                                     <div className="post-tags">
-                                        <Badge pill bsPrefix="reaction-tags">
+                                        <Badge pill bsPrefix="reaction-tags" key={key}>
                                             {data}
                                         </Badge>
                                     </div>
@@ -188,8 +188,8 @@ export const Posts = (props) => {
             <div className="post-container">
                 {postData.map((data, key) => {
                     return (
-                        <div key={key}>
-                            <Post
+                        <div>
+                            <Post key={key}
                                 like={data.like || 0}
                                 celebrate={data.celebrate || 0}
                                 support={data.support || 0}

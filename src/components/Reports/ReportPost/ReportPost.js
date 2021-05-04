@@ -47,8 +47,15 @@ const Report = ({ postId, writerName, recognizeeName, content, createdAt, coreVa
                     </Col>
                     <div className="report-reason" >
                         <Image src="info.svg"></Image>
-                        <p style={{ color:'#074EE8', display:'inline', "padding-left":"5px"}}>Report Info:&nbsp;</p>
-                        {reportReason}
+                        <p style={{ color:'#074EE8', display:'inline', "paddingLeft":"5px"}}>Report Info:&nbsp;</p>
+                        <Container>{reportReason.map((data, key) => {
+                            return (
+                                <Row>
+                                    - {data}
+                                </Row>
+                            );
+                        })}
+                        </Container>
                     </div>
                     <div className="report-button-container">
                         <Button className="report-button" variant="outline-danger" onClick={() => approveReport(postId)}>

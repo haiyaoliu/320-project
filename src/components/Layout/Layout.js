@@ -63,7 +63,7 @@ function Layout(props) {
                 </Col>
                 <Col sm={{offset:2}} className="navbar-right">
                   <Navbar variant="dark" sticky="top" >
-                    <Nav class="ml-auto" style={{ "marginRight":"15px"}}>
+                    <Nav className="ml-auto" style={{ "marginRight":"15px"}}>
                       <PostModal peers={peers} positions={position} writerName={writerName}
                     companies={company} userID={employeeID} writerID={writerID} forceUpdate={props.forceUpdate} />
                     </Nav>
@@ -90,7 +90,7 @@ function Layout(props) {
                 </Col>
               </Row>
 
-              <Row style={{ "padding-top": "56px"}}>
+              <Row style={{ "paddingTop": "56px"}}>
                 <Col lg={2} style={{position:"fixed"}}>
                   <Sidebar />
                 </Col>

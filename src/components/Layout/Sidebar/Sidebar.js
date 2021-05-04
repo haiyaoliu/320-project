@@ -18,7 +18,7 @@ function Sidebar(props) {
             <Nav.Link>Filter</Nav.Link>
             <Nav.Link as={NavLink} to="/reports">Reports</Nav.Link>
             <Nav.Link href="/" onClick={handleLogout}>Log Out</Nav.Link>
-            <href></href>
+            <hr />
         </Nav>);
 }
 
