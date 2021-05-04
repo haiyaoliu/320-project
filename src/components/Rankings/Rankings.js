@@ -30,7 +30,14 @@ function Rankings(props) {
         data.employees[1].push('[silver medal placeholder]')
         data.employees[2].push('[bronze medal placeholder]')
     } **/
-  
+    
+    function getAvatar(name) {
+        if (avatar.size > 0) {
+            return avatar.get(name);
+        }
+        return ""
+    }
+    
 
     return (
         <Layout>
@@ -43,7 +50,7 @@ function Rankings(props) {
                 <div className = "number">
                     {data.employees.slice(0, 1).map(([n, r]) => (
                         <div className = "profile-pic">
-                            <Image src={ avatar.get(n) }/>
+                            <Image src={ getAvatar(n) }/>
                         </div>))}
                     { data.employees.slice(0,1).map(([n,r]) => (
                         <div className = "achiever-details">
@@ -58,7 +65,7 @@ function Rankings(props) {
                 <div className = "number">
                     {data.employees.slice(1, 2).map(([n, r]) => (
                         <div className = "profile-pic">
-                            <Image src={ avatar.get(n) }/>
+                            <Image src={ getAvatar(n) }/>
                         </div>))}
                     { data.employees.slice(1,2).map(([n,r]) => (
                         <div className = "achiever-details">
@@ -72,7 +79,7 @@ function Rankings(props) {
                 <div className = "number">
                     {data.employees.slice(2, 3).map(([n, r]) => (
                         <div className = "profile-pic">
-                            <Image src={ avatar.get(n) }/>
+                            <Image src={ getAvatar(n) }/>
                         </div>))}
                     { data.employees.slice(2,3).map(([n,r]) => (
                         <div className = "achiever-details">
@@ -91,7 +98,7 @@ function Rankings(props) {
                   { data.employees.slice(3).map(([n,r]) => (
                     <li>
                         <div>
-                            <Image src={ avatar.get(n)} width='100'/>
+                            <Image src={ getAvatar(n)} width='100'/>
                         </div>
                         {n} <br />
                         {r} Recognitions
