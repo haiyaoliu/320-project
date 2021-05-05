@@ -13,7 +13,7 @@ const FeedHeader = () => {
                     <Nav.Link active as={NavLink} to="/dashboard">All Recognitions</Nav.Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                    <Nav.Link as={NavLink} to="/filter/myrecognitions">My Recognitions</Nav.Link>
+                    <Nav.Link as={NavLink} to="/dashboard/myrecognitions">My Recognitions</Nav.Link>
                 </Nav.Item>
                 <ButtonGroup as="ButtonGroup">
                     <Button>Past Day</Button>
@@ -52,37 +52,37 @@ const Post = ({ like, celebrate, support, love, insightful, curious, postId, wri
                     <Row className="row-padding">
                         <Col>
                             <Button bsPrefix="reaction-button" onClick={() => onReactionPress("like", postId, reactionUpdate)}>
-                                <Image className="emoji-padding" src="like.svg" rounded />
+                                <Image className="emoji-padding" src="/like.svg" rounded />
                                 <Badge className="badge-mods">
                                     {like}
                                 </Badge>
                             </Button>
                             <Button bsPrefix="reaction-button" onClick={() => onReactionPress("celebrate", postId, reactionUpdate)}>
-                                <Image className="emoji-padding" src="celebrate.svg" rounded />
+                                <Image className="emoji-padding" src="/celebrate.svg" rounded />
                                 <Badge className="badge-mods">
                                     {celebrate}
                                 </Badge>
                             </Button>
                             <Button bsPrefix="reaction-button" onClick={() => onReactionPress("support", postId, reactionUpdate)}>
-                                <Image className="emoji-padding" src="support.svg" rounded />
+                                <Image className="emoji-padding" src="/support.svg" rounded />
                                 <Badge className="badge-mods">
                                     {support}
                                 </Badge>
                             </Button>
                             <Button bsPrefix="reaction-button" onClick={() => onReactionPress("love", postId, reactionUpdate)}>
-                                <Image className="emoji-padding" src="love.svg" rounded />
+                                <Image className="emoji-padding" src="/love.svg" rounded />
                                 <Badge className="badge-mods">
                                     {love}
                                 </Badge>
                             </Button>
                             <Button bsPrefix="reaction-button" onClick={() => onReactionPress("insightful", postId, reactionUpdate)}>
-                                <Image className="emoji-padding" src="insightful.svg" rounded />
+                                <Image className="emoji-padding" src="/insightful.svg" rounded />
                                 <Badge className="badge-mods">
                                     {insightful}
                                 </Badge>
                             </Button>
                             <Button bsPrefix="reaction-button" onClick={() => onReactionPress("curious", postId, reactionUpdate)}>
-                                <Image className="emoji-padding" src="curious.svg" rounded />
+                                <Image className="emoji-padding" src="/curious.svg" rounded />
                                 <Badge className="badge-mods">
                                     {curious}
                                 </Badge>
@@ -111,7 +111,10 @@ export const Posts = (props) => {
     const reactionUpdate = () => setReactionUpdateValue(reactionUpdateValue+1);
 
     const getPostData = () => {
-        axios.get('/feed/displayRecognitions')
+        let email = localStorage.getItem('user')
+        let emailString = email.slice(1, email.length-1)
+        console.log(emailString)
+        axios.post('/feed/displayRecognitions/dashboardFilter', { values : props.filterValue.pathname.split('/').slice(-1)[0], userEmail : emailString })
             .then(response => {
                 //console.log(response);
                 const allPosts = response.data;
@@ -121,6 +124,7 @@ export const Posts = (props) => {
     }
 
     useEffect(() => {
+        let path = props.filterValue.pathname
         getPostData();
     }, [props.forceUpdateValue, reactionUpdateValue]);
 

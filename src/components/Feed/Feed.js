@@ -13,7 +13,7 @@ function Feed(props) {
     return (
         <div >
             <Container fluid>
-                <Posts/>
+                <Posts filterValue={props.location}/>
             </Container>
         </div>
     );

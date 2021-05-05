@@ -35,6 +35,7 @@ export default function App(props) {
           )} />
           <PublicRoute path="/login" component={Login} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
+          <PrivateRoute path="/dashboard/:filterType" component={Dashboard} />
           <PrivateRoute path="/topemployees" component={Rankings} />
           <PrivateRoute path="/filter/:filterType" component={Filter} />  
           <PrivateRoute path="/filter" component={Filter} />  
