@@ -93,7 +93,7 @@ function Layout(props) {
                 </Col>
               </Row>
 
-              <Row style={{ "padding-top": "56px"}}>
+              <Row style={{ "paddingTop": "56px"}}>
                 <Col lg={2} style={{position:"fixed"}}>
                   <Sidebar />
                 </Col>

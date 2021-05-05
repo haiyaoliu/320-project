@@ -158,7 +158,7 @@ const PostModal = (props) => {
 
                             <Dropdown.Menu as={CustomMenu}>
                                 {props.peers.map(peer => (
-                                  <Dropdown.Item  onClick={(e) => {
+                                  <Dropdown.Item onClick={(e) => {
                                     setRecognizee(String(e.target.innerHTML))
                                     peerChange(e.target.innerHTML)
                                   }}>

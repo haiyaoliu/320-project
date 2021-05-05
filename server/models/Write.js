@@ -10,6 +10,8 @@ const WriteSchema = new Schema({
     content: String,
     coreValue: Array,
     createdAt: Date,
+    reported: Boolean,
+    reportReason: Array,
     like: Array,
     likeCount: Number,
     celebrate: Array,
