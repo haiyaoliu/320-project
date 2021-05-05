@@ -97,3 +97,11 @@
   background-color: none;
   color: #848484;
 }
+
+.report-button-transparent {
+  float: right;
+  /* margin-right: 0px !important; */
+  padding: 0px;
+  background-color: transparent;
+  /* border-color: #ccc; */
+}
