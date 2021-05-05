@@ -8,14 +8,15 @@ import { Image } from "react-bootstrap";
 
 function Rankings(props) {
 
-    const [data, setData] = useState({ employees: [] });
-    const [avatar, setAvatar] = useState({})
+    const [data, setData] = useState({ employees: [], coreValues: []});
+    //const [coreValues, setCoreValues] = useState({ values: []});
+    const [avatar, setAvatar] = useState({});
 
     useEffect(() => {
         axios.get("/ranking/employeeName").then((response) => {
-            setData({ employees: response.data})
+            setData({ employees: response.data[0], coreValues: response.data[1]})
         });
-        axios.get("ranking/getAvatar").then((response) => {
+	axios.get("/ranking/getAvatar").then((response) => {
             let info = response.data;
             let avatarMap = new Map();
             for (let i = 0; i < info.length; i++) {
@@ -23,6 +24,7 @@ function Rankings(props) {
             }
             setAvatar(avatarMap);
         });
+
     }, [])
 
     /**if(data.employees.length > 2) {
@@ -37,7 +39,6 @@ function Rankings(props) {
         }
         return ""
     }
-    
 
     return (
         <Layout>
@@ -95,14 +96,22 @@ function Rankings(props) {
             <div className ="achievers">
                 <h2>Company All-Stars</h2>
                 <ul className = "achievers-list">
-                  { data.employees.slice(3).map(([n,r]) => (
-                    <li>
-                        <div>
-                            <Image src={ getAvatar(n)} width='100'/>
-                        </div>
-                        {n} <br />
-                        {r} Recognitions
-                    </li>)) }
+                {
+		    data.coreValues.map(([v,l]) => (
+			    <div>
+			    Value: {v}
+			    
+			    <div className="scroll">
+			    {
+				l.map(([n,r]) => (
+					<div className="child">
+                                                <Image src={ getAvatar(n)} width='100'/> <br />
+					{n} <br />
+					{r} Recognitions
+				    </div>))
+			    }
+			</div><br /></div>))
+		}
                 </ul>
             </div>
             <br />
