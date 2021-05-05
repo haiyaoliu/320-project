@@ -16,11 +16,11 @@ const FilterFeedHeader = () => {
                     <Nav.Link active as={NavLink} to="/filter/myrecognitions">My Recognitions</Nav.Link>
                 </Nav.Item>
                 <ButtonGroup as="ButtonGroup">
-                    <Button>Past Day</Button>
-                    <Button>Past Week</Button>
-                    <Button>Past Month</Button>
-                    <Button>Past Year</Button>
-                    <Button active>All Time</Button>
+                    <Button as={NavLink} to="/dashboard/pastday">Past Day</Button>
+                    <Button as={NavLink} to="/dashboard/pastweek">Past Week</Button>
+                    <Button as={NavLink} to="/dashboard/pastmonth">Past Month</Button>
+                    <Button as={NavLink} to="/dashboard/pastyear">Past Year</Button>
+                    <Button active as={NavLink} to="/dashboard/alltime">All Time</Button>
                 </ButtonGroup>
             </Nav>
         </header>
