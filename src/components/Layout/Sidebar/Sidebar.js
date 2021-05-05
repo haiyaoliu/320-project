@@ -20,7 +20,6 @@ function Sidebar(props) {
             <Nav.Link as={NavLink} to="/topemployees">Top Employees</Nav.Link>
             <NavDropdown title= "Filter" id="collapsible-nav-dropdown">
                 <NavDropdown.Item as={NavLink} to="/filter/myrecognitions">My Recognitions</NavDropdown.Item>
-                <NavDropdown.Item>My Circle</NavDropdown.Item>
                 <NavDropdown.Item as={NavLink} to="/filter/coreValues/Mentoring&Collaboration">Core Values</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="/" onClick={handleLogout}>Log Out</Nav.Link>
