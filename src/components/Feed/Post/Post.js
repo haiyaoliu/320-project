@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Feed.css";
 import { ListGroup, Card, Container, Col, Row, Nav, ButtonGroup, Button, Badge, Image, Modal, Form} from "react-bootstrap";
+import { getUser } from "../../../utils/Common";
 
 // HEADER
 const FeedHeader = () => {
@@ -27,7 +28,7 @@ const FeedHeader = () => {
 };
 
 function onReactionPress(reactionType, postId, forceUpdate) {
-    axios.patch(`/feed/addReaction/${reactionType}/${postId}`).then(() => {
+    axios.patch(`/feed/addReaction/${reactionType}/${postId}`, {reacterName: getUser()}).then(() => {
         forceUpdate();
     });
 }
@@ -187,15 +188,16 @@ export const Posts = (props) => {
             <FeedHeader />
             <div className="post-container">
                 {postData.map((data, key) => {
+                    // console.log(data)
                     return (
-                        <div>
-                            <Post key={key}
-                                like={data.like || 0}
-                                celebrate={data.celebrate || 0}
-                                support={data.support || 0}
-                                love={data.love || 0}
-                                insightful={data.insightful || 0}
-                                curious={data.curious || 0}
+                        <div key={key}>
+                            <Post
+                                like={data.likeCount || 0}
+                                celebrate={data.celebrateCount || 0}
+                                support={data.supportCount || 0}
+                                love={data.loveCount || 0}
+                                insightful={data.insightfulCount || 0}
+                                curious={data.curiousCount || 0}
                                 postId={data._id}
                                 key={key}
                                 writerName={data.writerName}
