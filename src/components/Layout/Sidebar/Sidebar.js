@@ -12,7 +12,6 @@ function Sidebar(props) {
         removeUserSession();
     }
 
-    //"My Circle" filter currently not implemented
     //Change Core Values link?
 
     return (
