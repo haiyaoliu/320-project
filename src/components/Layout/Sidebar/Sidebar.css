@@ -9,9 +9,16 @@
 
 .menuItem {
     padding-left: 0rem !important;
+    padding-right: 0rem !important;
+    width: 100%
 }
 
 .navbarPadding {
     padding-left: 0rem !important;
     padding-right: 0rem !important;
+}
+
+.chevron {
+    float: right;
+    position: relative;
 }
