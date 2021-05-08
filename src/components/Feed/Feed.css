@@ -18,14 +18,14 @@
   border-bottom: 3px solid #074ee8;
 }
 
-.recognition-header ButtonGroup {
+.recognition-header .btn-group {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   margin-right: 1rem;
   margin-left: auto;
 }
 
-.recognition-header ButtonGroup button {
+.recognition-header .btn-group button {
   background-color: white;
   font-size: 16px;
   color: #074ee8;
@@ -82,7 +82,7 @@
   color: #0000ff;
   border-radius: 2rem;
   padding: 1.25px 10px;
-  font-size: 1rem
+  font-size: 1rem;
 }
 
 .card-padding {
