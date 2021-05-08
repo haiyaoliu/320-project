@@ -4,9 +4,11 @@ const router = require("express").Router();
 
 require("../../models/Write");
 require("../../models/Users");
+require("../../models/CoreValues");
 
 const Recognition = mongoose.model("Write");
 const Users = mongoose.model("Users");
+const CoreValues = mongoose.model("CoreValues");
 
 router.post("/", async (req, res, done) => {
   const { userEmail } = req.fields;
@@ -15,26 +17,46 @@ router.post("/", async (req, res, done) => {
     res.send([]);
   }
   
-  Recognition.find(
-    { recognizeeID: user.employeeId },
-    null,
-    function (err, regs) {
-      if (err) return console.error(err);
-      
-      values = {}
-      regs.forEach(rec => {
-        rec.coreValue.forEach(val => {
-          if(val in values) {
-            values[val] += 1
-          } else {
-            values[val] = 0
-          }
+  await Users.find({}, 'firstName lastName positionTitle companyName employeeId', function (err, users) {
+    if (err) return console.error(err);
+    company = users[0].companyName
+    CoreValues.findOne(
+      { companyName: company },
+      "values",
+      function (err, coreValue) {
+        if (err) return console.error(err);
+        values = {}
+        coreValue.get('values').map(val => {
+          values[val] = 0
         })
-      })
-      console.log(values)
-      res.send(values);
-    }
-  );
+
+
+        Recognition.find(
+          { recognizeeID: user.employeeId },
+          null,
+          function (err, regs) {
+            if (err) return console.error(err);
+            regs.forEach(rec => {
+              rec.coreValue.forEach(val => {
+                if(val in values) {
+                  console.log("TesT")
+                  values[val] += 1
+                } else {
+                  values[val] = 0
+                }
+              })
+            })
+            res.json(values);
+          }
+        );
+      }
+    );
+  });
+  
+
+  
+
+  
 });
 
 module.exports = router;
