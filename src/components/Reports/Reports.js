@@ -4,7 +4,7 @@ import Layout from "../Layout/Layout";
 import "./Reports.css";
 import { ReportsList } from "./ReportPost/ReportPost";
 import { Posts } from "../Feed/Post/Post";
-import { Container, Image } from "react-bootstrap";
+import { Row, Col, Container, Image } from "react-bootstrap";
 import axios from "axios";
 
 function Reports(props) {
@@ -45,12 +45,16 @@ function Reports(props) {
                             <p>{userInfo.fullName}</p>
                         </div>
                         <div className="profile-header-info">
-                            <p className="profile-position">
-                                {userInfo.position} at {userInfo.company}
-                            </p>
-                            <p className="profile-contact">
-                                Contact: {userInfo.email}
-                            </p>
+                            <Container className="description-bar-style">
+                                <Row className = "full-width">
+                                    <Col className = "title-style">
+                                        {userInfo.position} at {userInfo.company}
+                                    </Col>
+                                    <Col className = "contact-style">
+                                        Contact: {userInfo.email}
+                                    </Col>
+                                </Row>
+                            </Container>
                         </div>
                     </div>
                 </div>

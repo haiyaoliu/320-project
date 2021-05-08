@@ -45,3 +45,28 @@
 .profile-content {
   min-height: 1000px;
 }
+
+.full-width {
+  width: 100%;
+}
+
+.max-width {
+  max-width: 100%;
+}
+
+.contact-style {
+  text-align: end !important;
+  padding-left: 0.5rem;
+}
+
+.title-style {
+  /* max-width: 45% !important; */
+  padding-right: 0.5rem;
+}
+
+.description-bar-style {
+  padding-left: 16.5rem;
+  padding-right: 2rem;
+  position: absolute;
+  max-width: 100%;
+}
