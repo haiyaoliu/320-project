@@ -16,9 +16,11 @@ function Sidebar(props) {
         <Nav className="col-md-12 d-none d-md-block sidebar">
             <Nav.Link as={NavLink} to="/topemployees">Top Employees</Nav.Link>
             <Nav.Link>Filter</Nav.Link>
+            <Nav.Link as={NavLink} to="/mydata">My Data</Nav.Link>
             <Nav.Link href="/" onClick={handleLogout}>Log Out</Nav.Link>
             <href></href>
-        </Nav>);
+        </Nav>
+    );
 }
 
 export default Sidebar;

@@ -5,7 +5,7 @@ require("../../models/Users");
 const User = mongoose.model("Users");
 
 router.post("/", (req, res, done) => {
-    User.findOne({email: req.fields.email }, "employeeId firstName lastName", function (err, users) {
+    User.findOne({email: req.fields.email }, "employeeId firstName lastName positionTitle companyName startDate", function (err, users) {
         if (err) return console.error(err);
         res.send(users);
     });
