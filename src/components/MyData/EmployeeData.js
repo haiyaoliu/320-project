@@ -9,7 +9,7 @@ import "./MyData.css";
 
 
 
-function MyData(props) {
+function EmployeeData(props) {
     const [userInfo, setUserInfo] = useState({})
     
     useEffect(() => {
@@ -51,6 +51,11 @@ function MyData(props) {
         a.click();
     }
 
+    if(userInfo.isManager == false) {
+        console.log("Error: not authorized!");
+        window.location.href = '/';
+    }
+
     return (
         <Layout>
             <Container fluid>
@@ -60,8 +65,14 @@ function MyData(props) {
                             variant="link"
                             onClick={() => download_data(JSON.stringify(recognitionData), `${userInfo.fullName}-data.json`)}
                         >
-                            Download
+                            Download My Data
                         </Button>
+                        {(userInfo.isManager ? (<><Button 
+                            variant="link"
+                            onClick={() => download_data(JSON.stringify(recognitionData), `${userInfo.fullName}-data.json`)}
+                        >
+                            Download All Data
+                        </Button></>) : (< ></>))}
                     </div>
                     <div className="profile-header-content">
                         <div className="profile-header-avatar">
@@ -90,4 +101,4 @@ function MyData(props) {
     );
 }
 
-export default MyData;
+export default EmployeeData;

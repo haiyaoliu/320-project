@@ -7,6 +7,7 @@ import Rankings from "./components/Rankings/Rankings";
 import PrivateRoute from './utils/PrivateRoute';
 import PublicRoute from './utils/PublicRoute';
 import MyData from "./components/MyData/MyData";
+import EmployeeData from "./components/MyData/EmployeeData";
 
 export default function App(props) {
   const [users, setUsers] = useState([]);
@@ -34,6 +35,7 @@ export default function App(props) {
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/topemployees" component={Rankings} />
           <PrivateRoute path="/mydata" component={MyData} />
+          <PrivateRoute path="/employeedata" component={EmployeeData} />
         </Switch>
         <Redirect from="/" to="login" />
       </Router>
