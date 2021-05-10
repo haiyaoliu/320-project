@@ -42,7 +42,7 @@ export const TallyList = (props) => {
                         let f = 2.0 - 0.15*len;
                         let fsize = (f > 0.5 ? f : 0.5);
                         return(
-                            <Col className="justify-content-md-center" md={{span:Math.min(8/len, 5)}}>
+                            <Col className="justify-content-md-center" md={{span:Math.min(8/len, 5)}} style={{borderRight:`0px`}}>
                                 <CircularProgressbarWithChildren 
                                     className="tally-counter"
                                     value={recognitionData[key] % 100}
