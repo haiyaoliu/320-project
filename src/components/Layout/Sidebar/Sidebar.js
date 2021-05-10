@@ -65,7 +65,7 @@ function Sidebar(props) {
                 <Nav.Link className="subMenu" as={NavLink} to="/reports">
                     Reports
                 </Nav.Link>
-                <Nav.Link className="subMenu" as={NavLink} to="/WIP">
+                <Nav.Link className="subMenu" as={NavLink} to="/employeedata">
                     Employee Data
                 </Nav.Link>
                 <hr className="dividerPadding"/>
