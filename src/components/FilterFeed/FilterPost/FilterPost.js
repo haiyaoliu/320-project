@@ -22,19 +22,19 @@ const FilterFeedHeader = () => {
                     </NavDropdown>
                 </Nav.Item>
                 <ButtonGroup as="ButtonGroup">
-                    <Button component={Link} to="/dashboard/pastday">
+                    <Button onClick={event => window.location.href="/dashboard/pastday"}>
                         Past Day
                     </Button>
-                    <Button component={Link} to="/dashboard/pastweek">
+                    <Button onClick={event => window.location.href="/dashboard/pastweek"}>
                         Past Week
                     </Button>
-                    <Button component={Link} to="/dashboard/pastmonth">
+                    <Button onClick={event => window.location.href="/dashboard/pastmonth"}>
                         Past Month
                     </Button>
-                    <Button component={Link} to="/dashboard/pastyear">
+                    <Button onClick={event => window.location.href="/dashboard/pastyear"}>
                         Past Year
                     </Button>
-                    <Button active component={Link} to="/dashboard/alltime">
+                    <Button onClick={event => window.location.href="/dashboard/alltime"}>
                         All Time
                     </Button>
                 </ButtonGroup>

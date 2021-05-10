@@ -16,11 +16,21 @@ const FeedHeader = () => {
                     <Nav.Link as={NavLink} to="/filter/myrecognitions">My Recognitions</Nav.Link>
                 </Nav.Item>
                 <ButtonGroup as="ButtonGroup">
-                    <Button>Past Day</Button>
-                    <Button>Past Week</Button>
-                    <Button>Past Month</Button>
-                    <Button>Past Year</Button>
-                    <Button active>All Time</Button>
+                    <Button onClick={event => window.location.href="/dashboard/pastday"}>
+                        Past Day
+                    </Button>
+                    <Button onClick={event => window.location.href="/dashboard/pastweek"}>
+                        Past Week
+                    </Button>
+                    <Button onClick={event => window.location.href="/dashboard/pastmonth"}>
+                        Past Month
+                    </Button>
+                    <Button onClick={event => window.location.href="/dashboard/pastyear"}>
+                        Past Year
+                    </Button>
+                    <Button onClick={event => window.location.href="/dashboard/alltime"}>
+                        All Time
+                    </Button>
                 </ButtonGroup>
             </Nav>
         </header>
