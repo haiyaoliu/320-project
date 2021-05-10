@@ -16,9 +16,9 @@ const FilterFeedHeader = () => {
                     <Nav.Link active as={NavLink} to="/filter/myrecognitions">My Recognitions</Nav.Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                    <NavDropdown title = "Filter By" id="collapsible-nav-dropdown">
-                        <NavDropdown.Item as={NavLink} to="/filter/coreValues/Collaboration">Collaboration</NavDropdown.Item>
-                        <NavDropdown.Item as={NavLink} to="/filter/coreValues/Mentoring">Mentoring</NavDropdown.Item>
+                    <NavDropdown title ="Filter By" id="collapsible-nav-dropdown">
+                        <NavDropdown.Item onClick={event => window.location.href="/filter/coreValues/Collaboration"}>Collaboration</NavDropdown.Item>
+                        <NavDropdown.Item onClick={event => window.location.href="/filter/coreValues/Mentoring"}>Mentoring</NavDropdown.Item>
                     </NavDropdown>
                 </Nav.Item>
                 <ButtonGroup as="ButtonGroup">

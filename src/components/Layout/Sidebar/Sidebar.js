@@ -18,9 +18,8 @@ function Sidebar(props) {
         <Nav className="col-md-12 d-none d-md-block sidebar">
             <Nav.Link as={NavLink} to="/topemployees">Top Employees</Nav.Link>
             <NavDropdown title= "Filter" id="collapsible-nav-dropdown">
-                <NavDropdown.Item as={NavLink} to="/filter/myrecognitions">My Recognitions</NavDropdown.Item>
-                <NavDropdown.Item as={NavLink} to="/filter/coreValues/Collaboration">Collaboration</NavDropdown.Item>
-                <NavDropdown.Item as={NavLink} to="/filter/coreValues/Mentoring">Mentoring</NavDropdown.Item>
+                <NavDropdown.Item onClick={event => window.location.href="/filter/myrecognitions"}>My Recognitions</NavDropdown.Item>
+                <NavDropdown.Item onClick={event => window.location.href="/filter/coreValues/Collaboration&Mentoring"}>Core Values</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="/" onClick={handleLogout}>Log Out</Nav.Link>
             <href></href>
