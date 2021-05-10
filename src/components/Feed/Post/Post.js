@@ -13,7 +13,7 @@ const FeedHeader = () => {
                     <Nav.Link active as={NavLink} to="/dashboard">All Recognitions</Nav.Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                    <Nav.Link as={NavLink} to="/dashboard/myrecognitions">My Recognitions</Nav.Link>
+                    <Nav.Link as={NavLink} to="/filter/myrecognitions">My Recognitions</Nav.Link>
                 </Nav.Item>
                 <ButtonGroup as="ButtonGroup">
                     <Button>Past Day</Button>
