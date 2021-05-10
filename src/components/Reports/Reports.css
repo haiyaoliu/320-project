@@ -1,0 +1,78 @@
+.profile-header {
+  margin-bottom: 8rem;
+}
+
+.profile-header-info p {
+  margin-top: 5px;
+}
+
+/* --------- header-cover --------- */
+.profile-header-cover {
+  height: 15rem;
+  border-bottom: 2px solid #000000;
+}
+
+.profile-header-cover p {
+  margin-top: 10px;
+  text-align: right;
+}
+
+/* -------- header-avatar ------------ */
+.profile-header-avatar {
+  margin-left: 3.5rem;
+  margin-top: -10rem;
+  float: left;
+  /* width: 12.5rem; */
+}
+
+.profile-header-avatar img {
+  height: 196px;
+  width: 200px;
+  border: 1px solid;
+}
+
+.profile-header-avatar p {
+  float: right;
+  margin-left: 1rem;
+  margin-top: 3.5rem;
+  font-size: 50px;
+}
+
+.profile-position {
+  margin-left: -18rem;
+  float: left;
+}
+
+.profile-contact {
+  float: right;
+  text-align: right;
+}
+
+.profile-content {
+  min-height: 1000px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.max-width {
+  max-width: 100%;
+}
+
+.contact-style {
+  text-align: end !important;
+  padding-left: 0.5rem;
+}
+
+.title-style {
+  /* max-width: 45% !important; */
+  padding-right: 0.5rem;
+}
+
+.description-bar-style {
+  padding-left: 16.5rem;
+  padding-right: 2rem;
+  position: absolute;
+  max-width: 100%;
+}

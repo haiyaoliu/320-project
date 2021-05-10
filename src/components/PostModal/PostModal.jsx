@@ -27,7 +27,7 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 // Dropdown needs access to the DOM node in order to position the Menu
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <a
-      href=""
+      href="/#"
       ref={ref}
       onClick={(e) => {
         e.preventDefault();
@@ -80,7 +80,7 @@ const PostModal = (props) => {
 
     const handleClose = () => { setShow(false); }
     const handleShow = () => {
-      axios.post("write/getCoreValue", { company: String(props.companies[0]) })
+      axios.post("write/getInfo/getCoreValue", { company: String(props.companies[0]) })
         .then(response => {
           setCoreValue(response.data["values"]);
         })
@@ -119,9 +119,9 @@ const PostModal = (props) => {
       setEmployeeID(props.userID[i])
       document.getElementById("peerPosition").innerHTML = props.positions[i];
       document.getElementById("peerCompany").innerHTML = props.companies[i];
-      document.getElementById("peerAvatar").src = "https://randomuser.me/api/portraits/men/" + String(i) + ".jpg";
+      document.getElementById("peerAvatar").src = props.avatar[i];
 
-      axios.post("write/getCoreValue", { company: String(props.companies[i]) })
+      axios.post("write/getInfo/getCoreValue", { company: String(props.companies[i]) })
         .then(response => {
           setCoreValue(response.data["values"]);
         })
@@ -158,7 +158,7 @@ const PostModal = (props) => {
 
                             <Dropdown.Menu as={CustomMenu}>
                                 {props.peers.map(peer => (
-                                  <Dropdown.Item  onClick={(e) => {
+                                  <Dropdown.Item onClick={(e) => {
                                     setRecognizee(String(e.target.innerHTML))
                                     peerChange(e.target.innerHTML)
                                   }}>
@@ -171,7 +171,7 @@ const PostModal = (props) => {
                     <Row>
                         <Col className="bodySmall center">
                             <div className='mt-2'>
-                                <Image src="https://randomuser.me/api/portraits/men/1.jpg" id="peerAvatar" rounded />
+                                <Image src={props.avatar[0]} width="128" height="128"id="peerAvatar" rounded />
                             </div>
                         </Col>
                     </Row>

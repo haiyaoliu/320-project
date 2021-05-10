@@ -3,29 +3,41 @@ import "./Rankings.css";
 import { NavLink } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { makeArray } from "jquery";
-import { Container } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 
 
 function Rankings(props) {
 
-    const [data, setData] = useState({ employees: []});
+    const [data, setData] = useState({ employees: [], coreValues: []});
+    //const [coreValues, setCoreValues] = useState({ values: []});
+    const [avatar, setAvatar] = useState({});
 
     useEffect(() => {
-        axios.get("/testing_only/employeeName").then((response) => {
-            setData({ employees: response.data})
-        });    
+        axios.get("/ranking/employeeName").then((response) => {
+            setData({ employees: response.data[0], coreValues: response.data[1]})
+        });
+	axios.get("/ranking/getAvatar").then((response) => {
+            let info = response.data;
+            let avatarMap = new Map();
+            for (let i = 0; i < info.length; i++) {
+                avatarMap.set(info[i].firstName + ' ' + info[i].lastName, info[i].legoCharacterUrl)
+            }
+            setAvatar(avatarMap);
+        });
+
     }, [])
 
-    console.log(data);
     /**if(data.employees.length > 2) {
         data.employees[0].push('[gold medal placeholder]')
         data.employees[1].push('[silver medal placeholder]')
         data.employees[2].push('[bronze medal placeholder]')
     } **/
     
-    function RandomGen() {
-        return "https://randomuser.me/api/portraits/men/" + String(Math.floor(Math.random() * (99 - 3 + 1) + 3)) + ".jpg";
+    function getAvatar(name) {
+        if (avatar.size > 0) {
+            return avatar.get(name);
+        }
+        return ""
     }
 
     return (
@@ -37,13 +49,14 @@ function Rankings(props) {
             <div className = "high-achievers">
                 <h2>All-Time <span className = "bold-blue">High</span> Achievers</h2>
                 <div className = "number">
-                    <div className = "profile-pic">
-                        <img src="https://randomuser.me/api/portraits/men/1.jpg"/>
-                    </div>
+                    {data.employees.slice(0, 1).map(([n, r]) => (
+                        <div className = "profile-pic">
+                            <Image src={ getAvatar(n) }/>
+                        </div>))}
                     { data.employees.slice(0,1).map(([n,r]) => (
                         <div className = "achiever-details">
                             <div className = "achiever-name">{n} </div>
-                            <img src="gold_medal.svg"/> <br />
+                            <Image src="gold_medal.svg"/> <br />
                             <span className= "bold-blue">{r}</span>
                             <br /> Recognitions 
                         </div>)) }
@@ -51,26 +64,28 @@ function Rankings(props) {
                 </div>
                 <hr />
                 <div className = "number">
-                    <div className = "profile-pic">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg"/>
-                    </div>
+                    {data.employees.slice(1, 2).map(([n, r]) => (
+                        <div className = "profile-pic">
+                            <Image src={ getAvatar(n) }/>
+                        </div>))}
                     { data.employees.slice(1,2).map(([n,r]) => (
                         <div className = "achiever-details">
                             <div className = "achiever-name">{n} </div>
-                            <img src="silver_medal.svg"/> <br />
+                            <Image src="silver_medal.svg"/> <br />
                             <span className= "bold-blue">{r}</span>
                             <br /> Recognitions 
                         </div>)) }
                 </div>
                 <hr />
                 <div className = "number">
-                    <div className = "profile-pic">
-                        <img src="https://randomuser.me/api/portraits/men/2.jpg"/>
-                    </div>
+                    {data.employees.slice(2, 3).map(([n, r]) => (
+                        <div className = "profile-pic">
+                            <Image src={ getAvatar(n) }/>
+                        </div>))}
                     { data.employees.slice(2,3).map(([n,r]) => (
                         <div className = "achiever-details">
                             <div className = "achiever-name">{n} </div>
-                            <img src="bronze_medal.svg"/> <br />
+                            <Image src="bronze_medal.svg"/> <br />
                             <span className= "bold-blue">{r}</span>
                             <br /> Recognitions 
                         </div>)) }
@@ -81,14 +96,22 @@ function Rankings(props) {
             <div className ="achievers">
                 <h2>Company All-Stars</h2>
                 <ul className = "achievers-list">
-                  { data.employees.slice(3).map(([n,r]) => (
-                    <li>
-                        <div>
-                            <img src={RandomGen()} width='100'/>
-                        </div>
-                        {n} <br />
-                        {r} Recognitions
-                    </li>)) }
+                {
+		    data.coreValues.map(([v,l]) => (
+			    <div>
+			    Value: {v}
+			    
+			    <div className="scroll">
+			    {
+				l.map(([n,r]) => (
+					<div className="child">
+                                                <Image src={ getAvatar(n)} width='100'/> <br />
+					{n} <br />
+					{r} Recognitions
+				    </div>))
+			    }
+			</div><br /></div>))
+		}
                 </ul>
             </div>
             <br />
