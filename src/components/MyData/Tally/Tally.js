@@ -38,21 +38,24 @@ export const TallyList = (props) => {
             <Container fluid>
                 <Row className="justify-content-md-center">
                     {Object.keys(recognitionData).map(function(key, index) {
+                        let len = Object.keys(recognitionData).length;
+                        let f = 2.0 - 0.15*len;
+                        let fsize = (f > 0.5 ? f : 0.5);
                         return(
-                            <Col md={{span:3, offset:1}}>
+                            <Col md={{span:(90/len), offset:1}}>
                                 <CircularProgressbarWithChildren 
                                     className="tally-counter"
-                                    value={index % 100}
+                                    value={recognitionData[key] % 100}
                                     styles={{
                                         path: {
-                                            stroke: `${matchColor(index)}`
+                                            stroke: `${matchColor(recognitionData[key])}`
                                         }
                                     }}>
-                                    <p style={{fontSize:`1.5vw`}}>{key}</p>
-                                    <p style={{fontSize:`1.5vw`}}>{index}</p>
+                                    <p style={{fontSize:`${fsize}vw`}}>{key}</p>
+                                    <p style={{fontSize:`${fsize}vw`}}>{recognitionData[key]}</p>
                                 </CircularProgressbarWithChildren>
                             </Col>
-                        );
+                        )
                     })}
                 </Row>
             </Container>
