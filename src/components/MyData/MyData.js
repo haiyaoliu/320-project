@@ -53,7 +53,7 @@ function MyData(props) {
 
     return (
         <Layout>
-            <Container fluid>
+            <Container fluid style={{position:"relative", height:`${window.innerHeight}px`}}>
                 <div className="profile-header">
                     <div className="profile-header-cover">
                         <Button 
@@ -82,7 +82,7 @@ function MyData(props) {
                         </div>
                     </div>
                 </div>
-                <div className="recognition-tally">
+                <div >
                     <TallyList />
                 </div>
             </Container>

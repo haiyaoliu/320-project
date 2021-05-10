@@ -72,9 +72,6 @@
 }
 
 /* -------- tally-counter ------------ */
-.rect-backdrop {
-  background: #DDDDDD;
-  border-radius: 48px;
-  width: 25%;
-  height: 492px;
+.tally-container {
+  height: 100%;
 }
