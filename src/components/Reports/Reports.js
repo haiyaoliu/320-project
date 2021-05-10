@@ -19,7 +19,8 @@ function Reports(props) {
                 email: emailString,
                 fullName: response.data.firstName + ' ' + response.data.lastName,
                 company: response.data.companyName,
-                position: response.data.positionTitle
+                position: response.data.positionTitle,
+                avatarUrl: response.data.legoCharacterUrl
             };
             setUserInfo(info);
             
@@ -41,7 +42,7 @@ function Reports(props) {
                     </div>
                     <div className="profile-header-content">
                         <div className="profile-header-avatar">
-                            <Image src="Avatar.png" roundedCircle></Image>
+                            <Image src={userInfo.avatarUrl} roundedCircle></Image>
                             <p>{userInfo.fullName}</p>
                         </div>
                         <div className="profile-header-info">

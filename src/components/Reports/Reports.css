@@ -25,6 +25,12 @@
   /* width: 12.5rem; */
 }
 
+.profile-header-avatar img {
+  height: 196px;
+  width: 200px;
+  border: 1px solid;
+}
+
 .profile-header-avatar p {
   float: right;
   margin-left: 1rem;
