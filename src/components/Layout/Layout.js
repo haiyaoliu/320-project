@@ -35,7 +35,7 @@ function Layout(props) {
       let email = localStorage.getItem('user')
       let emailString = email.slice(1, email.length-1)
       
-      axios.post("write/getCurrentUser", { email: emailString }).then((response) => {
+      axios.post("/write/getCurrentUser", { email: emailString }).then((response) => {
         setWriterID(response.data["employeeId"]);
         setWriterName(response.data["firstName"] + ' ' + response.data["lastName"])
       }).catch(error => {
