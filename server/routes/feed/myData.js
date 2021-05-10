@@ -39,7 +39,6 @@ router.post("/", async (req, res, done) => {
             regs.forEach(rec => {
               rec.coreValue.forEach(val => {
                 if(val in values) {
-                  console.log("TesT")
                   values[val] += 1
                 } else {
                   values[val] = 0
