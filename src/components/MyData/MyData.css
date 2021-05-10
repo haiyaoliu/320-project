@@ -12,9 +12,9 @@
   border-bottom: 2px solid #000000;
 }
 
-.profile-header-cover p {
+.profile-header-cover Button {
   margin-top: 10px;
-  text-align: right;
+  float: right;
 }
 
 /* -------- header-avatar ------------ */
