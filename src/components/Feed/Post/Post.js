@@ -98,7 +98,7 @@ const Post = ({ like, celebrate, support, love, insightful, curious, postId, wri
         <div>
             <Card className="one-post">
                 <Card.Body className="card-padding">
-                    <Image src={profilePic} style={{ height:"40px", float: "left", border:"1px solid"}}roundedCircle></Image>
+                    <Image src={profilePic} style={{ height:"40px", float: "left", border:"2px solid #aaaaaa"}}roundedCircle></Image>
                     <Card.Title>
                         <div>
                             <p style={{ color: 'blue', display: 'inline' }}>{recognizeeName}</p> has been recognized by <p style={{ color: 'blue', display: 'inline' }}>{writerName}</p>
