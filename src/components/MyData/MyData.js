@@ -16,7 +16,7 @@ function MyData(props) {
         let email = localStorage.getItem('user')
         let emailString = email.slice(1, email.length - 1)
 
-        axios.post("write/getCurrentUser", { email: emailString }).then((response) => {
+        axios.post("write/getInfo/getCurrentUser", { email: emailString }).then((response) => {
             let timeValue = new Date(response.data.startDate).toUTCString().slice(0,-13);
             let info = {
                 email: emailString,
@@ -24,7 +24,8 @@ function MyData(props) {
                 company: response.data.companyName,
                 position: response.data.positionTitle,
                 startDate: timeValue,
-                isManager: response.data.isManager
+                isManager: response.data.isManager,
+                avatarUrl: response.data.legoCharacterUrl
             };
             setUserInfo(info);
         }).catch(error => {
@@ -65,7 +66,7 @@ function MyData(props) {
                     </div>
                     <div className="profile-header-content">
                         <div className="profile-header-avatar">
-                            <Image src="Avatar.png" roundedCircle></Image>
+                            <Image src={userInfo.avatarUrl} roundedCircle></Image>
                             <p>{userInfo.fullName}</p>
                         </div>
                         <div className="profile-header-info">

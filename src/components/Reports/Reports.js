@@ -38,7 +38,7 @@ function Reports(props) {
     
     return (
         <Layout>
-            <Container fluid>
+            <Container fluid style={{position:"relative"}}>
                 <div className="profile-header">
                     <div className="profile-header-cover">
                         <p>Access: <span style={{ "color": "red"}}>Manager</span></p>
