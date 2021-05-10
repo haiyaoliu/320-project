@@ -74,7 +74,7 @@ router.post("/myRecognition", async (req, res, done) => {
   }
   
   Recognition.find(
-    { writerID: user.employeeId },
+    { recognizeeID: user.employeeId },
     null,
     { sort: { createdAt: "desc" } },
     function (err, regs) {
