@@ -19,10 +19,10 @@ function Reports(props) {
                 email: emailString,
                 fullName: response.data.firstName + ' ' + response.data.lastName,
                 company: response.data.companyName,
-                position: response.data.positionTitle
+                position: response.data.positionTitle,
+                isManager: response.data.isManager
             };
             setUserInfo(info);
-            
         }).catch(error => {
             console.log('There was an error!', error);
         })
@@ -30,7 +30,10 @@ function Reports(props) {
     
     }, [])
     
-    
+    if(userInfo.isManager == false) {
+        console.log("Error: not authorized!");
+        window.location.href = '/';
+    }
     
     return (
         <Layout>
