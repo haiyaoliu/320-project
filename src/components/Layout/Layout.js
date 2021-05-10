@@ -34,17 +34,17 @@ function Layout(props) {
       }).catch(error => {
         console.error('There was an error!', error);
       });
-      
+
       let email = localStorage.getItem('user')
       let emailString = email.slice(1, email.length-1)
-      
+
       axios.post("write/getInfo/getCurrentUser", { email: emailString }).then((response) => {
         setWriterID(response.data.employeeId);
         setWriterName(response.data.firstName + ' ' + response.data.lastName)
       }).catch(error => {
         console.log('There was an error!', error);
       })
-      
+
     }, [])
 
     return (
@@ -94,11 +94,11 @@ function Layout(props) {
               </Row>
 
               <Row style={{ "paddingTop": "56px"}}>
-                <Col lg={2} style={{position:"fixed"}}>
+                <Col sm={2} style={{position:"fixed"}}>
                   <Sidebar />
                 </Col>
 
-                <Col className="body-content" lg={{offset: 2}}>
+                <Col className="body-content" sm={{offset: 2}}>
                   {children}
                 </Col>
               </Row>
