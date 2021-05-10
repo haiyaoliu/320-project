@@ -48,7 +48,7 @@ const Report = ({ postId, writerName, recognizeeName, content, createdAt, coreVa
                     <div className="report-reason" >
                         <Image src="info.svg"></Image>
                         <p style={{ color:'#074EE8', display:'inline', "paddingLeft":"5px"}}>Report Info:&nbsp;</p>
-                        <Container>{reportReason.map((data, key) => {
+                        <Container className="reportInfoBox">{reportReason.map((data, key) => {
                             return (
                                 <Row>
                                     - {data}

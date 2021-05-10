@@ -89,8 +89,22 @@
   padding-bottom: 0.5rem;
 }
 
+.card-padding .card-title {
+  margin-top: 7px;
+  margin-left: 50px;
+}
+
+.card-padding .card-subtitle {
+  margin-left: 50px;
+}
+
+.card-padding .card-text {
+  margin-left: 50px;
+}
+
 .row-padding {
   padding-top: 0.25rem;
+  margin-left: 30px;
 }
 
 .badge-mods {

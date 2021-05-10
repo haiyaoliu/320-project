@@ -20,7 +20,7 @@ router.post("/getCoreValue", (req, res, done) => {
 
 
 router.post("/getCurrentUser", (req, res, done) => {
-    User.findOne({ email: req.fields.email }, "employeeId firstName lastName companyName positionTitle isManager", function (err, users) {
+    User.findOne({ email: req.fields.email }, "employeeId firstName lastName companyName positionTitle isManager legoCharacterUrl", function (err, users) {
         if (err) return console.error(err);
         res.send(users);
     });

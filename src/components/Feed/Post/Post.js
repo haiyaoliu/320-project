@@ -91,13 +91,14 @@ function ReportButton(props) {
     Notes: can easily sub things in { } for stuff like matchNameToID(writerID)
     Spacing is done in the <div> style
 */
-const Post = ({ like, celebrate, support, love, insightful, curious, postId, writerName, recognizeeName, content, coreValue, createdAt, reactionUpdate }) => {
+const Post = ({ like, celebrate, support, love, insightful, curious, postId, writerName, recognizeeName, content, coreValue, createdAt, reactionUpdate, profilePic }) => {
     let timeValue = new Date(createdAt);
     if(!writerName) return <div />;
     return (
         <div>
             <Card className="one-post">
                 <Card.Body className="card-padding">
+                    <Image src={profilePic} style={{ height:"40px", float: "left", border:"1px solid"}}roundedCircle></Image>
                     <Card.Title>
                         <div>
                             <p style={{ color: 'blue', display: 'inline' }}>{recognizeeName}</p> has been recognized by <p style={{ color: 'blue', display: 'inline' }}>{writerName}</p>
@@ -167,6 +168,7 @@ const Post = ({ like, celebrate, support, love, insightful, curious, postId, wri
 export const Posts = (props) => {
     const [postData, setPostData] = useState([]);
     const [reactionUpdateValue, setReactionUpdateValue] = useState(0);
+    const [avatar, setAvatar] = useState({});
     const reactionUpdate = () => setReactionUpdateValue(reactionUpdateValue+1);
 
     const getPostData = () => {
@@ -177,11 +179,27 @@ export const Posts = (props) => {
                 setPostData(allPosts);
             })
             .catch(error => console.log("Error: ", error));
+        
+        axios.get("/ranking/getAvatar").then((response) => {
+            let info = response.data;
+            let avatarMap = new Map();
+            for (let i = 0; i < info.length; i++) {
+                avatarMap.set(info[i].firstName + ' ' + info[i].lastName, info[i].legoCharacterUrl)
+            }
+            setAvatar(avatarMap);
+        });
     }
 
     useEffect(() => {
         getPostData();
     }, [props.forceUpdateValue, reactionUpdateValue]);
+    
+    function getAvatar(name) {
+        if (avatar.size > 0) {
+            return avatar.get(name);
+        }
+        return ""
+    }
 
     return (
         <div>
@@ -206,6 +224,7 @@ export const Posts = (props) => {
                                 coreValue={data.coreValue}
                                 createdAt={data.createdAt}
                                 reactionUpdate={reactionUpdate}
+                                profilePic={getAvatar(data.recognizeeName)}
                             />
                         </div>
                     );
