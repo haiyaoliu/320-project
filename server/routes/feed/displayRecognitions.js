@@ -24,20 +24,20 @@ router.get("/", async (req, res, done) => {
 router.post("/dashboardFilter", async (req, res, done) => {
   const values = req.fields.values.split("&");
   const userEmail = req.fields.userEmail;
-  searchParams = {}
+  let searchParams = {}
 
-  arr = values
+  let arr = values
   if(values.includes("myrecognitions")) {
     const user = await Users.findOne({ email: userEmail }).exec();
     if (user === null) {
       res.send([]);
     }
-    searchParams["writerID"] = user.employeeId
+    searchParams["recognizeeID"] = user.employeeId
     arr = values.filter(item => item !== "myrecognitions")
   }
 
-  today = new Date()
-  timestamp = new Date(today)
+  let today = new Date()
+  let timestamp = new Date(today)
   switch(arr[0]) {
     case "pastday":
       timestamp.setDate(timestamp.getDate() - 1)
