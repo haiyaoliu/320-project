@@ -29,25 +29,26 @@ router.post("/", async (req, res, done) => {
         coreValue.get('values').map(val => {
           values[val] = 0
         })
+
+        Recognition.find(
+          { recognizeeID: user.employeeId },
+          null,
+          function (err, regs) {
+            if (err) return console.error(err);
+            regs.forEach(rec => {
+              rec.coreValue.forEach(val => {
+                if(val in values) {
+                  values[val] += 1  
+                }
+              })
+            })
+            res.json(values);
+          }
+        );
       }
     );
 
-    Recognition.find(
-      { recognizeeID: user.employeeId },
-      null,
-      function (err, regs) {
-        if (err) return console.error(err);
-        regs.forEach(rec => {
-          console.log(rec.createdAt)
-          rec.coreValue.forEach(val => {
-            if(val in values) {
-              values[val] += 1  
-            }
-          })
-        })
-        res.json(values);
-      }
-    );
+    
   });
   
 
