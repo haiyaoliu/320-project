@@ -5,12 +5,18 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Image } from "react-bootstrap";
 
+function useForceUpdate() {
+    const [value, setValue] = useState(0);
+    return () => setValue(value => value++);
+}
 
 function Rankings(props) {
 
     const [data, setData] = useState({ employees: [], coreValues: []});
     //const [coreValues, setCoreValues] = useState({ values: []});
     const [avatar, setAvatar] = useState({});
+    const [forceUpdateValue, setForceUpdateValue] = useState(0);
+    const forceUpdate = () => setForceUpdateValue(forceUpdateValue + 1);
 
     useEffect(() => {
         axios.get("/ranking/employeeName").then((response) => {
@@ -25,14 +31,14 @@ function Rankings(props) {
             setAvatar(avatarMap);
         });
 
-    }, [])
+    }, [forceUpdateValue])
 
     /**if(data.employees.length > 2) {
         data.employees[0].push('[gold medal placeholder]')
         data.employees[1].push('[silver medal placeholder]')
         data.employees[2].push('[bronze medal placeholder]')
     } **/
-    
+
     function getAvatar(name) {
         if (avatar.size > 0) {
             return avatar.get(name);
@@ -41,7 +47,7 @@ function Rankings(props) {
     }
 
     return (
-        <Layout>
+        <Layout forceUpdate={forceUpdate}>
             <div id = "wrapper">
             <div className = "header">
                 <h1>Our <br /> Rockstars</h1>
@@ -58,9 +64,9 @@ function Rankings(props) {
                             <div className = "achiever-name">{n} </div>
                             <Image src="gold_medal.svg"/> <br />
                             <span className= "bold-blue">{r}</span>
-                            <br /> Recognitions 
+                            <br /> Recognitions
                         </div>)) }
-                    
+
                 </div>
                 <hr />
                 <div className = "number">
@@ -73,7 +79,7 @@ function Rankings(props) {
                             <div className = "achiever-name">{n} </div>
                             <Image src="silver_medal.svg"/> <br />
                             <span className= "bold-blue">{r}</span>
-                            <br /> Recognitions 
+                            <br /> Recognitions
                         </div>)) }
                 </div>
                 <hr />
@@ -87,7 +93,7 @@ function Rankings(props) {
                             <div className = "achiever-name">{n} </div>
                             <Image src="bronze_medal.svg"/> <br />
                             <span className= "bold-blue">{r}</span>
-                            <br /> Recognitions 
+                            <br /> Recognitions
                         </div>)) }
                 </div>
                 <hr />
@@ -100,7 +106,7 @@ function Rankings(props) {
 		    data.coreValues.map(([v,l]) => (
 			    <div>
 			    Value: {v}
-			    
+
 			    <div className="scroll">
 			    {
 				l.map(([n,r]) => (
