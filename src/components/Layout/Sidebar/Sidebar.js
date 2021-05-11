@@ -18,7 +18,7 @@ function Sidebar(props) {
         let email = localStorage.getItem('user')
         let emailString = email.slice(1, email.length - 1)
 
-        axios.post("write/getInfo/getCurrentUser", { email: emailString }).then((response) => {
+        axios.post("/write/getInfo/getCurrentUser", { email: emailString }).then((response) => {
             let info = {
                 isManager: response.data.isManager
             };

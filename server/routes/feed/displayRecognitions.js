@@ -25,7 +25,7 @@ router.post("/dashboardFilter", async (req, res, done) => {
   const values = req.fields.values.split("&");
   const userEmail = req.fields.userEmail;
   let searchParams = {}
-
+  console.log(userEmail)
   let arr = values
   if(values.includes("myrecognitions")) {
     const user = await Users.findOne({ email: userEmail }).exec();
