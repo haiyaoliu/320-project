@@ -16,7 +16,7 @@ function EmployeeData(props) {
         let email = localStorage.getItem('user')
         let emailString = email.slice(1, email.length - 1)
 
-        axios.post("write/getInfo/getCurrentUser", { email: emailString }).then((response) => {
+        axios.post("/write/getInfo/getCurrentUser", { email: emailString }).then((response) => {
             let timeValue = new Date(response.data.startDate).toUTCString().slice(0,-13);
             let info = {
                 email: emailString,
@@ -34,11 +34,24 @@ function EmployeeData(props) {
     }, [])
 
     const [recognitionData, setRecognitionData] = useState({ recognitionCount: [] });
+    const [employeeData, setEmployeeData] = useState([])
+    const [myData, setMyData] = useState([]);
+
     useEffect(() => {
         let email = localStorage.getItem('user')
         let emailString = email.slice(1, email.length-1)
         axios.post("/feed/myData", { userEmail : emailString }).then((response) => {
             setRecognitionData(response.data);
+        }).catch(error=> {
+            console.log("Error: "+error);
+        });
+        axios.post("/feed/displayRecognitions/myRecognition", { userEmail : emailString }).then((response) => {
+            setMyData(response.data);
+        }).catch(error=> {
+            console.log("Error: "+error);
+        });
+        axios.get("/feed/displayRecognitions/").then((response) => {
+            setEmployeeData(response.data);
         }).catch(error=> {
             console.log("Error: "+error);
         });
@@ -66,13 +79,13 @@ function EmployeeData(props) {
                     <div className="profile-header-cover">
                         <Button 
                             variant="link"
-                            onClick={() => download_data(JSON.stringify(recognitionData), `${userInfo.fullName}-data.json`)}
+                            onClick={() => download_data(JSON.stringify(myData), `${userInfo.fullName}-data.json`)}
                         >
                             Download My Data
                         </Button>
                         {(userInfo.isManager ? (<><Button 
                             variant="link"
-                            onClick={() => download_data(JSON.stringify(recognitionData), `${userInfo.fullName}-data.json`)}
+                            onClick={() => download_data(JSON.stringify(employeeData), `${userInfo.company}-data.json`)}
                         >
                             Download All Data
                         </Button></>) : (< ></>))}

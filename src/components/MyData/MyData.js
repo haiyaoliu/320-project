@@ -34,11 +34,18 @@ function MyData(props) {
     }, [])
 
     const [recognitionData, setRecognitionData] = useState({ recognitionCount: [] });
+    const [myData, setMyData] = useState([]);
+
     useEffect(() => {
         let email = localStorage.getItem('user')
         let emailString = email.slice(1, email.length-1)
         axios.post("/feed/myData", { userEmail : emailString }).then((response) => {
             setRecognitionData(response.data);
+        }).catch(error=> {
+            console.log("Error: "+error);
+        });
+        axios.post("/feed/displayRecognitions/myRecognition", { userEmail : emailString }).then((response) => {
+            setMyData(response.data);
         }).catch(error=> {
             console.log("Error: "+error);
         });
@@ -59,7 +66,7 @@ function MyData(props) {
                     <div className="profile-header-cover">
                         <Button 
                             variant="link"
-                            onClick={() => download_data(JSON.stringify(recognitionData), `${userInfo.fullName}-data.json`)}
+                            onClick={() => download_data(JSON.stringify(myData), `${userInfo.fullName}-data.json`)}
                         >
                             Download
                         </Button>
