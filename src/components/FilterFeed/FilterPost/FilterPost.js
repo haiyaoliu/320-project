@@ -210,17 +210,6 @@ export const Posts = (props) => {
     }
 
     const getPostData = () => {
-        let email = localStorage.getItem('user')
-        let emailString = email.slice(1, email.length-1)
-        console.log(emailString)
-        axios.post('/feed/displayRecognitions/dashboardFilter', { values : props.filterValue.pathname.split('/').slice(-1)[0], userEmail : emailString })
-            .then(response => {
-                //console.log(response);
-                const allPosts = response.data;
-                setPostData(allPosts);
-            })
-            .catch(error => console.log("Error: ", error));
-        
         axios.get("/ranking/getAvatar").then((response) => {
             let info = response.data;
             let avatarMap = new Map();
