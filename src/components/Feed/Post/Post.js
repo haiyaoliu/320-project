@@ -207,7 +207,7 @@ export const Posts = (props) => {
     useEffect(() => {
         let path = props.filterValue.pathname
         getPostData();
-    }, [props.forceUpdateValue, reactionUpdateValue]);
+    }, [props.forceUpdateValue, reactionUpdateValue, props.filterValue.pathname]);
 
     function getAvatar(name) {
         if (avatar.size > 0) {
