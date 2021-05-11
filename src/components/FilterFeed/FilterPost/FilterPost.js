@@ -57,8 +57,6 @@ function ReportButton(props) {
     const handleShow = () => setShow(true);
 
     const handleSubmit = (event) => {
-        console.log("Hello world!");
-        console.log(props.postId);
         axios.patch(`/reports/writeReport/${props.postId}`, { reportReason: content });
     };
 
