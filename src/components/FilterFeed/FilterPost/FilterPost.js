@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 // import { postData } from "./test_posts" // CHANGE THIS
-import { ListGroup, Card, Container, Col, Row, Nav, ButtonGroup, Button, Badge, Image, Modal, Form, NavDropdown} from "react-bootstrap";
-import { NavLink, Link } from "react-router-dom";
+import { Card, Col, Row, Nav, ButtonGroup, Button, Badge, Image, Modal, Form, NavDropdown} from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import { getUser } from "../../../utils/Common";
 
 // HEADER
@@ -57,8 +57,6 @@ function ReportButton(props) {
     const handleShow = () => setShow(true);
 
     const handleSubmit = (event) => {
-        console.log("Hello world!");
-        console.log(props.postId);
         axios.patch(`/reports/writeReport/${props.postId}`, { reportReason: content });
     };
 

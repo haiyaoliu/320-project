@@ -44,3 +44,9 @@
   outline: none !important;
   box-shadow: none !important;
 }
+
+.sidebar-border {
+    border-right: 2px solid #aaaaaa;
+    margin-left: 2px;
+    height: 100%;
+}

@@ -2,24 +2,9 @@ import * as React from 'react';
 //import { readSync, realpathSync } from 'fs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./PostModal.css";
-import Modal from 'react-bootstrap/Modal'
-import ModalDialog from 'react-bootstrap/ModalDialog'
-import ModalHeader from 'react-bootstrap/ModalHeader'
-import Button from 'react-bootstrap/Button'
 import axios from "axios";
-import ModalTitle from 'react-bootstrap/ModalTitle'
-import ModalBody from 'react-bootstrap/ModalBody'
-import ModalFooter from 'react-bootstrap/ModalFooter'
-import Form from 'react-bootstrap/Form'
-import FormControl from 'react-bootstrap/FormControl'
-import Container from 'react-bootstrap/Container'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-import { Dropdown } from 'react-bootstrap';
-import Image from 'react-bootstrap/Image'
-import Figure from 'react-bootstrap/Figure'
-import DropdownButton from 'react-bootstrap/DropdownButton'
-import { useState, useRef, Fragment } from 'react';
+import { Dropdown, Modal, Button, Form, FormControl, Col, Row, Image } from 'react-bootstrap';
+import { useState } from 'react';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
@@ -88,7 +73,6 @@ const PostModal = (props) => {
       setEmployeeID(props.userID[1])
     }
     function handleSubmit(event) {
-      console.log(content);
       const sendRecognition = {
         writerID: props.writerID,
         writerName: props.writerName,

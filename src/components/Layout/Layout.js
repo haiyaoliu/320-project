@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Layout.css";
 import { Nav, Navbar, Container, Row, Col, Image, Form, FormControl, InputGroup } from "react-bootstrap";
-import { BrowserRouter as Route, Router, Redirect, Switch } from "react-router-dom";
 import PostModal from "../PostModal/PostModal";
 import Sidebar from "./Sidebar/Sidebar";
 
@@ -46,6 +45,10 @@ function Layout(props) {
       })
 
     }, [])
+
+    useEffect(() => (
+        window.scrollTo(0,0)
+    ), [props])
 
     return (
         <div>
@@ -94,7 +97,7 @@ function Layout(props) {
               </Row>
 
               <Row style={{ "paddingTop": "56px"}}>
-                <Col sm={2} style={{position:"fixed"}}>
+                <Col className = "sidebar-border" sm={2} style={{position:"fixed"}}>
                   <Sidebar />
                 </Col>
 

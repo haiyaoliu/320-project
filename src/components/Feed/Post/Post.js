@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import "../Feed.css";
-import { ListGroup, Card, Container, Col, Row, Nav, ButtonGroup, Button, Badge, Image, Modal, Form} from "react-bootstrap";
+import { Card, Col, Row, Nav, ButtonGroup, Button, Badge, Image, Modal, Form} from "react-bootstrap";
 import { getUser } from "../../../utils/Common";
 
 // HEADER
@@ -52,8 +52,6 @@ function ReportButton(props) {
     const handleShow = () => setShow(true);
 
     const handleSubmit = (event) => {
-        console.log("Hello world!");
-        console.log(props.postId);
         axios.patch(`/reports/writeReport/${props.postId}`, { reportReason: content });
     };
 
@@ -188,7 +186,6 @@ export const Posts = (props) => {
         let emailString = email.slice(1, email.length-1)
         axios.post('/feed/displayRecognitions/dashboardFilter', { values : props.filterValue.pathname.split('/').slice(-1)[0], userEmail : emailString })
             .then(response => {
-                //console.log(response);
                 const allPosts = response.data;
                 setPostData(allPosts);
             })
@@ -221,7 +218,6 @@ export const Posts = (props) => {
             <FeedHeader {...props} />
             <div className="post-container">
                 {postData.map((data, key) => {
-                    // console.log(data)
                     return (
                         <div key={key}>
                             <Post
