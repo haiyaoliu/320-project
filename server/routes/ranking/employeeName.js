@@ -9,18 +9,14 @@ const Recognition = mongoose.model("Write");
 let sort = function(data) {
     let sorted = {}
     let coreValues = {}
-    //console.log(data);
     data.map(r => {
-	console.log(r.recognizeeName);
         if(r.recognizeeName in sorted) {
-	    //console.log(r.recognizeeName);
             sorted[r.recognizeeName]++;
         } else {
             sorted[r.recognizeeName] = 1;
         }
     });
     let ranks = Object.entries(sorted);
-    //console.log(ranks);
     ranks.sort((a,b) => b[1] - a[1]);
     data.map(r => {
 	for(v of r.coreValue) {

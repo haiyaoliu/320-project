@@ -73,7 +73,6 @@ const PostModal = (props) => {
       setEmployeeID(props.userID[1])
     }
     function handleSubmit(event) {
-      console.log(content);
       const sendRecognition = {
         writerID: props.writerID,
         writerName: props.writerName,
