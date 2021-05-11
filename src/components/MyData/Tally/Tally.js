@@ -6,6 +6,8 @@ import { Container, Col, Row } from "react-bootstrap";
 
 
 export const TallyList = (props) => {
+    const rec_up_req = 10;
+
     const [recognitionData, setRecognitionData] = useState({ recognitionCount: [] });
     useEffect(() => {
         let email = localStorage.getItem('user')
@@ -18,7 +20,7 @@ export const TallyList = (props) => {
     }, []);
 
     const matchColor = (val) => {
-        let c = Math.floor(val / 100) % 5;
+        let c = Math.floor(val / rec_up_req) % 5;
         switch(c) {
             case 0:
                 return `rgb(7, 78, 232)`;   // Blue
@@ -45,7 +47,7 @@ export const TallyList = (props) => {
                             <Col className="justify-content-md-center" md={{span:Math.min(8/len, 5)}} style={{borderRight:`0px`}}>
                                 <CircularProgressbarWithChildren 
                                     className="tally-counter"
-                                    value={recognitionData[key] % 100}
+                                    value={(recognitionData[key] % rec_up_req)*10}
                                     styles={{
                                         path: {
                                             stroke: `${matchColor(recognitionData[key])}`
