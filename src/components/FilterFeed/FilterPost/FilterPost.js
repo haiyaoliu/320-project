@@ -1,36 +1,41 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
-import "../Feed.css";
-import { ListGroup, Card, Container, Col, Row, Nav, ButtonGroup, Button, Badge, Image, Modal, Form} from "react-bootstrap";
+// import { postData } from "./test_posts" // CHANGE THIS
+import { ListGroup, Card, Container, Col, Row, Nav, ButtonGroup, Button, Badge, Image, Modal, Form, NavDropdown} from "react-bootstrap";
+import { NavLink, Link } from "react-router-dom";
 import { getUser } from "../../../utils/Common";
 
 // HEADER
-const FeedHeader = (props) => {
-    const filterValue = props.filterValue.pathname.split('/').slice(-1)[0];
+const FilterFeedHeader = () => {
     return (
         <header className="recognition-header">
             <Nav as="ul">
                 <Nav.Item as="li">
-                    <Nav.Link active as={NavLink} to="/dashboard">All Recognitions</Nav.Link>
+                    <Nav.Link as={NavLink} to="/dashboard">All Recognitions</Nav.Link>
                 </Nav.Item>
                 <Nav.Item as="li">
                     <Nav.Link as={NavLink} to="/filter/myrecognitions">My Recognitions</Nav.Link>
                 </Nav.Item>
+                <Nav.Item as="li">
+                    <NavDropdown title ="Filter By" id="collapsible-nav-dropdown">
+                        <NavDropdown.Item onClick={event => window.location.href="/filter/coreValues/Collaboration"}>Collaboration</NavDropdown.Item>
+                        <NavDropdown.Item onClick={event => window.location.href="/filter/coreValues/Mentoring"}>Mentoring</NavDropdown.Item>
+                    </NavDropdown>
+                </Nav.Item>
                 <ButtonGroup as="ButtonGroup">
-                    <Button onClick={event => window.location.href="/dashboard/pastday"} className={filterValue === "pastday" ? "active" : ""}>
+                    <Button onClick={event => window.location.href="/dashboard/pastday"}>
                         Past Day
                     </Button>
-                    <Button onClick={event => window.location.href="/dashboard/pastweek"} className={filterValue === "pastweek" ? "active" : ""}>
+                    <Button onClick={event => window.location.href="/dashboard/pastweek"}>
                         Past Week
                     </Button>
-                    <Button onClick={event => window.location.href="/dashboard/pastmonth"} className={filterValue === "pastmonth" ? "active" : ""}>
+                    <Button onClick={event => window.location.href="/dashboard/pastmonth"}>
                         Past Month
                     </Button>
-                    <Button onClick={event => window.location.href="/dashboard/pastyear"} className={filterValue === "pastyear" ? "active" : ""}>
+                    <Button onClick={event => window.location.href="/dashboard/pastyear"}>
                         Past Year
                     </Button>
-                    <Button onClick={event => window.location.href="/dashboard/alltime"} className={filterValue === "alltime" ? "active" : ""}>
+                    <Button onClick={event => window.location.href="/dashboard/alltime"}>
                         All Time
                     </Button>
                 </ButtonGroup>
@@ -118,7 +123,7 @@ const Post = ({ like, celebrate, support, love, insightful, curious, postId, wri
                         </div>
                     </Card.Title>
                     <Card.Subtitle><small>{timeValue.toUTCString().slice(0,-3)}</small></Card.Subtitle>
-                    <Card.Text style={{ "marginTop":"10px"}}>
+                    <Card.Text style={{ "margin-top":"10px"}}>
                         {content}
                     </Card.Text>
                     <Row className="row-padding">
@@ -163,12 +168,12 @@ const Post = ({ like, celebrate, support, love, insightful, curious, postId, wri
                         <Col>{ coreValue.map((data, key) => {
                                 return (
                                     <div className="post-tags">
-                                        <Badge pill bsPrefix="reaction-tags" key={key}>
+                                        <Badge pill bsPrefix="reaction-tags">
                                             {data}
                                         </Badge>
                                     </div>
                                 );
-                            })}
+                              })}
                         </Col>
                     </Row>
                 </Card.Body>
@@ -183,17 +188,28 @@ export const Posts = (props) => {
     const [avatar, setAvatar] = useState({});
     const reactionUpdate = () => setReactionUpdateValue(reactionUpdateValue+1);
 
-    const getPostData = () => {
+    const myRecognitionsFilter = () => {
         let email = localStorage.getItem('user')
         let emailString = email.slice(1, email.length-1)
-        axios.post('/feed/displayRecognitions/dashboardFilter', { values : props.filterValue.pathname.split('/').slice(-1)[0], userEmail : emailString })
+
+        axios.post('/feed/displayRecognitions/myRecognition', { userEmail : emailString })
             .then(response => {
-                //console.log(response);
                 const allPosts = response.data;
                 setPostData(allPosts);
             })
             .catch(error => console.log("Error: ", error));
+    }
 
+    const coreValuesFilter = () => {
+        axios.post('/feed/displayRecognitions/coreValues', { values : props.filterValue.pathname.split('/').slice(-1)[0] })
+            .then(response => {
+                const allPosts = response.data;
+                setPostData(allPosts);
+            })
+            .catch(error => console.log("Error: ", error));
+    }
+
+    const getPostData = () => {
         axios.get("/ranking/getAvatar").then((response) => {
             let info = response.data;
             let avatarMap = new Map();
@@ -207,6 +223,11 @@ export const Posts = (props) => {
     useEffect(() => {
         let path = props.filterValue.pathname
         getPostData();
+        if(path.includes("myrecognitions")) {
+            myRecognitionsFilter()
+        } else if(path.includes("coreValues")) {
+            coreValuesFilter()
+        }
     }, [props.forceUpdateValue, reactionUpdateValue, props.filterValue.pathname]);
 
     function getAvatar(name) {
@@ -218,10 +239,9 @@ export const Posts = (props) => {
 
     return (
         <div>
-            <FeedHeader {...props} />
+            <FilterFeedHeader />
             <div className="post-container">
                 {postData.map((data, key) => {
-                    // console.log(data)
                     return (
                         <div key={key}>
                             <Post
@@ -248,4 +268,3 @@ export const Posts = (props) => {
         </div>
     );
 };
-

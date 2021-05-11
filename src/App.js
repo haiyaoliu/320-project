@@ -3,6 +3,7 @@ import "./styles.css";
 import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard"
 import Login from "./components/Login/Login"
+import Filter from "./components/Filter/Filter"
 import Feed from "./components/Feed/Feed"
 import Reports from "./components/Reports/Reports"
 import Rankings from "./components/Rankings/Rankings";
@@ -35,12 +36,14 @@ export default function App(props) {
           )} />
           <PublicRoute path="/login" component={Login} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
+          <PrivateRoute path="/dashboard/:filterType" component={Dashboard} />
           <PrivateRoute path="/topemployees" component={Rankings} />
+          <PrivateRoute path="/filter/:filterType" component={Filter} />  
+          <PrivateRoute path="/filter" component={Filter} />  
           <PrivateRoute path="/mydata" component={MyData} />
           <PrivateRoute path="/employeedata" component={EmployeeData} />
           <PrivateRoute path="/reports" component={Reports} />
         </Switch>
-        <Redirect from="/" to="login" />
       </Router>
     </div>
   );

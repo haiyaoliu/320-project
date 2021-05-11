@@ -16,7 +16,7 @@ function Dashboard(props) {
 
     return (
       <Layout {...props} forceUpdate={forceUpdate}>
-        <Feed forceUpdateValue={forceUpdateValue}/>
+        <Feed forceUpdateValue={forceUpdateValue} location={props.location}/>
       </Layout>
     );
 }

@@ -38,7 +38,7 @@ function Layout(props) {
       let email = localStorage.getItem('user')
       let emailString = email.slice(1, email.length-1)
 
-      axios.post("write/getInfo/getCurrentUser", { email: emailString }).then((response) => {
+      axios.post("/write/getInfo/getCurrentUser", { email: emailString }).then((response) => {
         setWriterID(response.data.employeeId);
         setWriterName(response.data.firstName + ' ' + response.data.lastName)
       }).catch(error => {
@@ -76,14 +76,14 @@ function Layout(props) {
                         <InputGroup.Append>
                           <InputGroup.Text className="search-icon">
                             <Image
-                              src="search.svg"
+                              src="/search.svg"
                             />
                           </InputGroup.Text>
                         </InputGroup.Append>
                       </InputGroup>
                     </Form>
                       <Image
-                        src="bell.svg"
+                        src="/bell.svg"
                         width="25"
                         height="25"
                         className="d-inline-block align-top"

@@ -9,14 +9,12 @@ import { Container } from "react-bootstrap";
 
 
 function Feed(props) {
-    console.log("Feed forceUpdateValue: ", props.forceUpdateValue);
 
     return (
         <div >
             <Container fluid>
-                <Posts forceUpdateValue={props.forceUpdateValue}  />
+                <Posts forceUpdateValue={props.forceUpdateValue} filterValue={props.location}/>
             </Container>
-
         </div>
     );
 }
