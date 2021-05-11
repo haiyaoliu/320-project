@@ -31,18 +31,12 @@ function EmployeeData(props) {
         })
     }, [])
 
-    const [recognitionData, setRecognitionData] = useState({ recognitionCount: [] });
     const [employeeData, setEmployeeData] = useState([])
     const [myData, setMyData] = useState([]);
 
     useEffect(() => {
         let email = localStorage.getItem('user')
         let emailString = email.slice(1, email.length-1)
-        axios.post("/feed/myData", { userEmail : emailString }).then((response) => {
-            setRecognitionData(response.data);
-        }).catch(error=> {
-            console.log("Error: "+error);
-        });
         axios.post("/feed/displayRecognitions/myRecognition", { userEmail : emailString }).then((response) => {
             setMyData(response.data);
         }).catch(error=> {
