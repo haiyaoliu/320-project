@@ -228,7 +228,7 @@ export const Posts = (props) => {
         } else if(path.includes("coreValues")) {
             coreValuesFilter()
         }
-    }, [props.forceUpdateValue, reactionUpdateValue]);
+    }, [props.forceUpdateValue, reactionUpdateValue, props.filterValue.pathname]);
 
     function getAvatar(name) {
         if (avatar.size > 0) {
