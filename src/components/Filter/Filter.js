@@ -6,10 +6,12 @@ import FilterFeed from "../FilterFeed/FilterFeed"
 
 
 function Filter(props) {
+    const [forceUpdateValue, setForceUpdateValue] = useState(0);
+    const forceUpdate = () => setForceUpdateValue(forceUpdateValue + 1);
     
     return (
-        <Layout >
-            <FilterFeed location={props.location} />
+        <Layout {...props} forceUpdate={forceUpdate}>
+            <FilterFeed forceUpdateValue={forceUpdateValue} location={props.location} />
         </Layout>
     );
 }
