@@ -46,13 +46,13 @@ function Sidebar(props) {
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg> Filter
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down chevron"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </Navbar.Brand>
-                <Nav.Link className="subMenu" as={NavLink} to="/filter/WIP">
+                <Nav.Link className="subMenu" as={NavLink} to="/filter/myrecognitions">
                     My Recognitions
                 </Nav.Link>
-                <Nav.Link className="subMenu" as={NavLink} to="/filter/WIP">
+                <Nav.Link className="subMenu" as={NavLink} to="/filter/coreValues/Collaboration">
                     Core Values
                 </Nav.Link>
-                <Nav.Link className="subMenu" as={NavLink} to="/filter/WIP">
+                <Nav.Link className="subMenu" as={NavLink} to="/dashboard/pastday">
                     Date
                 </Nav.Link>
                 <hr className="dividerPadding"/>

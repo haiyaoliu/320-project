@@ -14,7 +14,7 @@ const FilterFeedHeader = () => {
                     <Nav.Link as={NavLink} to="/dashboard">All Recognitions</Nav.Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                    <Nav.Link active as={NavLink} to="/filter/myrecognitions">My Recognitions</Nav.Link>
+                    <Nav.Link as={NavLink} to="/filter/myrecognitions">My Recognitions</Nav.Link>
                 </Nav.Item>
                 <Nav.Item as="li">
                     <NavDropdown title ="Filter By" id="collapsible-nav-dropdown">
