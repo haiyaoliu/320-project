@@ -14,5 +14,6 @@ yarn start
 
 ### To run both at the same time in one terminal
 ```bash
+yarn install-all
 yarn start
 ```
