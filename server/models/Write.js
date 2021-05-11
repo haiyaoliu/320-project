@@ -10,12 +10,21 @@ const WriteSchema = new Schema({
     content: String,
     coreValue: Array,
     createdAt: Date,
-    like: Number,
-    celebrate: Number,
-    support: Number,
-    love: Number,
-    insightful: Number,
-    curious: Number
+    reported: Boolean,
+    reportReason: Array,
+    like: Array,
+    likeCount: Number,
+    celebrate: Array,
+    celebrateCount: Number,
+    support: Array,
+    supportCount: Number,
+    love: Array,
+    loveCount: Number,
+    insightful: Array,
+    insightfulCount: Number,
+    curious: Array,
+    curiousCount: Number
+
 });
 
 mongoose.model("Write", WriteSchema, "user_recognition");

@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "./styles.css";
 import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard"
 import Login from "./components/Login/Login"
 import Filter from "./components/Filter/Filter"
 import Feed from "./components/Feed/Feed"
+import Reports from "./components/Reports/Reports"
 import Rankings from "./components/Rankings/Rankings";
 import PrivateRoute from './utils/PrivateRoute';
 import PublicRoute from './utils/PublicRoute';
-import { getToken, removeUserSession, setUserSession } from './utils/Common';
+import MyData from "./components/MyData/MyData";
+import EmployeeData from "./components/MyData/EmployeeData";
 
 export default function App(props) {
   const [users, setUsers] = useState([]);
@@ -39,6 +40,9 @@ export default function App(props) {
           <PrivateRoute path="/topemployees" component={Rankings} />
           <PrivateRoute path="/filter/:filterType" component={Filter} />  
           <PrivateRoute path="/filter" component={Filter} />  
+          <PrivateRoute path="/mydata" component={MyData} />
+          <PrivateRoute path="/employeedata" component={EmployeeData} />
+          <PrivateRoute path="/reports" component={Reports} />
         </Switch>
       </Router>
     </div>

@@ -18,14 +18,14 @@
   border-bottom: 3px solid #074ee8;
 }
 
-.recognition-header ButtonGroup {
+.recognition-header .btn-group {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   margin-right: 1rem;
   margin-left: auto;
 }
 
-.recognition-header ButtonGroup button {
+.recognition-header .btn-group button {
   background-color: white;
   font-size: 16px;
   color: #074ee8;
@@ -82,18 +82,40 @@
   color: #0000ff;
   border-radius: 2rem;
   padding: 1.25px 10px;
-  font-size: 1rem
+  font-size: 1rem;
 }
 
 .card-padding {
   padding-bottom: 0.5rem;
 }
 
+.card-padding .card-title {
+  margin-top: 7px;
+  margin-left: 50px;
+}
+
+.card-padding .card-subtitle {
+  margin-left: 50px;
+}
+
+.card-padding .card-text {
+  margin-left: 50px;
+}
+
 .row-padding {
   padding-top: 0.25rem;
+  margin-left: 30px;
 }
 
 .badge-mods {
   background-color: none;
   color: #848484;
+}
+
+.report-button-transparent {
+  float: right;
+  /* margin-right: 0px !important; */
+  padding: 0px;
+  background-color: transparent;
+  /* border-color: #ccc; */
 }

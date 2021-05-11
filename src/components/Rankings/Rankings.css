@@ -1,5 +1,5 @@
 #wrapper {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -58,11 +58,11 @@ h2 {
 
 .number .profile-pic {
     display: inline-block;
-    width: 50%;
+    width: 45%;
 }
 
 .number .profile-pic img {
-    width: 75%;
+    width: 80%;
     background: none;
     float: left;
     display: block;
@@ -84,6 +84,7 @@ h2 {
     text-align: center;
     vertical-align: top;
     width: 50%;
+    padding-bottom: 0.2rem;
 }
 
 .achiever-name {
@@ -106,17 +107,19 @@ hr {
     margin-bottom: 30px;
 }
 
-.achievers-list > li{
-    font-family: Chalkboard;
-    list-style: none;
-    display: inline-block;
-    width: 220px;
-    margin-top: 20px;
-    margin-bottom: 40px;
-    text-align: center;
-}
-
 .achievers-list img {
     border: solid 4px lightgray;
     border-radius: 20px;
+}
+
+.scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    display: block;
+}
+
+.child {
+    display: inline-block;
+    width: 200px;
 }

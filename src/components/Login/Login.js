@@ -14,8 +14,6 @@ function Login(props) {
         return email.length > 0 && password.length > 0;
     }
     function handleSubmit(event) {
-        console.log("username:", email)
-        console.log("password", password);
         const sendLogin = {
             email: email,
             password: password

@@ -1,0 +1,24 @@
+.dividerPadding {
+    margin-bottom: 16px;
+    margin-top: 16px;
+}
+
+.subMenu {
+    padding-left: 2rem !important;
+}
+
+.menuItem {
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+    width: 100%
+}
+
+.navbarPadding {
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+}
+
+.chevron {
+    float: right;
+    position: relative;
+}
