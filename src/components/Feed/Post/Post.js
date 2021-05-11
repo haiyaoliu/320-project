@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import "../Feed.css";
-import { ListGroup, Card, Container, Col, Row, Nav, ButtonGroup, Button, Badge, Image, Modal, Form} from "react-bootstrap";
+import { Card, Col, Row, Nav, ButtonGroup, Button, Badge, Image, Modal, Form} from "react-bootstrap";
 import { getUser } from "../../../utils/Common";
 
 // HEADER

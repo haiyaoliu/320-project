@@ -1,8 +1,6 @@
 import Layout from "../Layout/Layout";
-import { NavLink } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { makeArray } from "jquery";
 import { Row, Col, Container, Image, Button } from "react-bootstrap";
 import { TallyList } from "./Tally/Tally"
 import "./MyData.css";

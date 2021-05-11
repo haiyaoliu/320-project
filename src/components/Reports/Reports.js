@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import Layout from "../Layout/Layout";
 import "./Reports.css";
 import { ReportsList } from "./ReportPost/ReportPost";
-import { Posts } from "../Feed/Post/Post";
 import { Row, Col, Container, Image } from "react-bootstrap";
 import axios from "axios";
 

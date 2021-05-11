@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
 import { getUser, removeUserSession } from '../../../utils/Common';
 import { NavLink } from 'react-router-dom'
 import "./Sidebar.css"

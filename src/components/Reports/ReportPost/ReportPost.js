@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./ReportPost.css";
-import { ListGroup, Card, Container, Col, Row, Nav, ButtonGroup, Button, Badge, Image} from "react-bootstrap";
+import { Card, Container, Col, Row, Button, Badge, Image} from "react-bootstrap";
 
 const Report = ({ postId, writerName, recognizeeName, content, createdAt, coreValue, reportReason }) => {
     let timeValue = new Date(createdAt);

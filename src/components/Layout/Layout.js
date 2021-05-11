@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Layout.css";
 import { Nav, Navbar, Container, Row, Col, Image, Form, FormControl, InputGroup } from "react-bootstrap";
-import { BrowserRouter as Route, Router, Redirect, Switch } from "react-router-dom";
 import PostModal from "../PostModal/PostModal";
 import Sidebar from "./Sidebar/Sidebar";
 
