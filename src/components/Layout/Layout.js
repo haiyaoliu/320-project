@@ -94,7 +94,7 @@ function Layout(props) {
               </Row>
 
               <Row style={{ "paddingTop": "56px"}}>
-                <Col sm={2} style={{position:"fixed"}}>
+                <Col className = "sidebar-border" sm={2} style={{position:"fixed"}}>
                   <Sidebar />
                 </Col>
 
