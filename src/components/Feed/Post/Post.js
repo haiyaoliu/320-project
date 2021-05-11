@@ -6,7 +6,8 @@ import { ListGroup, Card, Container, Col, Row, Nav, ButtonGroup, Button, Badge, 
 import { getUser } from "../../../utils/Common";
 
 // HEADER
-const FeedHeader = () => {
+const FeedHeader = (props) => {
+    const filterValue = props.filterValue.pathname.split('/').slice(-1)[0];
     return (
         <header className="recognition-header">
             <Nav as="ul">
@@ -17,19 +18,19 @@ const FeedHeader = () => {
                     <Nav.Link as={NavLink} to="/filter/myrecognitions">My Recognitions</Nav.Link>
                 </Nav.Item>
                 <ButtonGroup as="ButtonGroup">
-                    <Button onClick={event => window.location.href="/dashboard/pastday"}>
+                    <Button onClick={event => window.location.href="/dashboard/pastday"} className={filterValue === "pastday" ? "active" : ""}>
                         Past Day
                     </Button>
-                    <Button onClick={event => window.location.href="/dashboard/pastweek"}>
+                    <Button onClick={event => window.location.href="/dashboard/pastweek"} className={filterValue === "pastweek" ? "active" : ""}>
                         Past Week
                     </Button>
-                    <Button onClick={event => window.location.href="/dashboard/pastmonth"}>
+                    <Button onClick={event => window.location.href="/dashboard/pastmonth"} className={filterValue === "pastmonth" ? "active" : ""}>
                         Past Month
                     </Button>
-                    <Button onClick={event => window.location.href="/dashboard/pastyear"}>
+                    <Button onClick={event => window.location.href="/dashboard/pastyear"} className={filterValue === "pastyear" ? "active" : ""}>
                         Past Year
                     </Button>
-                    <Button onClick={event => window.location.href="/dashboard/alltime"}>
+                    <Button onClick={event => window.location.href="/dashboard/alltime"} className={filterValue === "alltime" ? "active" : ""}>
                         All Time
                     </Button>
                 </ButtonGroup>
@@ -185,7 +186,6 @@ export const Posts = (props) => {
     const getPostData = () => {
         let email = localStorage.getItem('user')
         let emailString = email.slice(1, email.length-1)
-        console.log(emailString)
         axios.post('/feed/displayRecognitions/dashboardFilter', { values : props.filterValue.pathname.split('/').slice(-1)[0], userEmail : emailString })
             .then(response => {
                 //console.log(response);
@@ -193,7 +193,7 @@ export const Posts = (props) => {
                 setPostData(allPosts);
             })
             .catch(error => console.log("Error: ", error));
-        
+
         axios.get("/ranking/getAvatar").then((response) => {
             let info = response.data;
             let avatarMap = new Map();
@@ -208,7 +208,7 @@ export const Posts = (props) => {
         let path = props.filterValue.pathname
         getPostData();
     }, [props.forceUpdateValue, reactionUpdateValue]);
-    
+
     function getAvatar(name) {
         if (avatar.size > 0) {
             return avatar.get(name);
@@ -218,7 +218,7 @@ export const Posts = (props) => {
 
     return (
         <div>
-            <FeedHeader />
+            <FeedHeader {...props} />
             <div className="post-container">
                 {postData.map((data, key) => {
                     // console.log(data)
